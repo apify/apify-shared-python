@@ -1,7 +1,7 @@
 import pathlib
 import re
 
-PACKAGE_NAME = 'apify_client'
+PACKAGE_NAME = 'apify_shared'
 REPO_ROOT = pathlib.Path(__file__).parent.resolve() / '..'
 PYPROJECT_TOML_FILE_PATH = REPO_ROOT / 'pyproject.toml'
 

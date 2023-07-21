@@ -30,14 +30,6 @@ We use `autopep8` and `isort` to automatically format the code to a common forma
 
 We use `flake8` for linting, `mypy` for type checking and `pytest` for unit testing. To run these tools, just run `make check-code`.
 
-## Documentation
-
-We use the [Google docstring format](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) for documenting the code.
-We document every user-facing class or method, and enforce that using the flake8-docstrings library.
-
-The documentation is then rendered from the docstrings in the code, using `pydoc-markdown` and some heavy post-processing,
-and from Markdown documents in the `docs` folder in the `docs` branch, and then rendered using Docusaurus and published to GitHub pages.
-
 ## Release process
 
 Publishing new versions to [PyPI](https://pypi.org/project/apify-client) happens automatically through GitHub Actions.
