@@ -14,10 +14,10 @@ T = TypeVar('T')
 
 def filter_out_none_values_recursively(dictionary: Dict) -> Dict:
     """Return copy of the dictionary, recursively omitting all keys for which values are None."""
-    return cast(dict, filter_out_none_values_recursively_internal(dictionary))
+    return cast(dict, _filter_out_none_values_recursively_internal(dictionary))
 
 
-def filter_out_none_values_recursively_internal(
+def _filter_out_none_values_recursively_internal(
     dictionary: Dict,
     remove_empty_dicts: Optional[bool] = None,
 ) -> Optional[Dict]:
@@ -29,7 +29,7 @@ def filter_out_none_values_recursively_internal(
     result = {}
     for k, v in dictionary.items():
         if isinstance(v, dict):
-            v = filter_out_none_values_recursively_internal(v, remove_empty_dicts is True or remove_empty_dicts is None)
+            v = _filter_out_none_values_recursively_internal(v, remove_empty_dicts is True or remove_empty_dicts is None)
         if v is not None:
             result[k] = v
     if not result and remove_empty_dicts:

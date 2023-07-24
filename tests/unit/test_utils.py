@@ -3,8 +3,8 @@ from datetime import datetime, timezone
 from enum import Enum
 
 from apify_shared.utils import (
+    _filter_out_none_values_recursively_internal,
     filter_out_none_values_recursively,
-    filter_out_none_values_recursively_internal,
     ignore_docs,
     is_content_type_json,
     is_content_type_text,
@@ -36,12 +36,12 @@ def test__filter_out_none_values_recursively() -> None:  # Copypasted from clien
 
 
 def test__filter_out_none_values_recursively_internal() -> None:  # Copypasted from client
-    assert filter_out_none_values_recursively_internal({}) == {}
-    assert filter_out_none_values_recursively_internal({'k1': {}}) == {}
-    assert filter_out_none_values_recursively_internal({}, False) == {}
-    assert filter_out_none_values_recursively_internal({'k1': {}}, False) == {'k1': {}}
-    assert filter_out_none_values_recursively_internal({}, True) is None
-    assert filter_out_none_values_recursively_internal({'k1': {}}, True) is None
+    assert _filter_out_none_values_recursively_internal({}) == {}
+    assert _filter_out_none_values_recursively_internal({'k1': {}}) == {}
+    assert _filter_out_none_values_recursively_internal({}, False) == {}
+    assert _filter_out_none_values_recursively_internal({'k1': {}}, False) == {'k1': {}}
+    assert _filter_out_none_values_recursively_internal({}, True) is None
+    assert _filter_out_none_values_recursively_internal({'k1': {}}, True) is None
 
 
 def test__is_content_type_json() -> None:  # Copypasted from client

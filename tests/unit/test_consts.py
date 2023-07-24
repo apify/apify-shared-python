@@ -3,7 +3,7 @@ import itertools
 from apify_shared.consts import BOOL_ENV_VARS, DATETIME_ENV_VARS, FLOAT_ENV_VARS, INTEGER_ENV_VARS, STRING_ENV_VARS, ApifyEnvVars
 
 
-class TestConsts:  # noqa: D101
+class TestConsts:
 
     def test_env_vars_types_unique(self) -> None:
         """Test that env var types don't contain any item twice."""
