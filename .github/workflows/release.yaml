@@ -28,9 +28,13 @@ jobs:
     name: Run lint and type_checks
     uses: ./.github/workflows/lint_and_type_checks.yaml
 
+  unit_tests:
+    name: Run unit tests
+    uses: ./.github/workflows/unit_tests.yaml
+
   publish_to_pypi:
     name: Publish to PyPI
-    needs: [lint_and_type_checks]
+    needs: [lint_and_type_checks, unit_tests]
     runs-on: ubuntu-latest
     permissions:
       contents: write

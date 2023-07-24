@@ -3,12 +3,18 @@ import json
 import re
 from datetime import datetime, timezone
 from enum import Enum
-from typing import Any, Dict, List, Optional, TypeVar
+from typing import Any, Dict, List, Optional, TypeVar, cast
 
 PARSE_DATE_FIELDS_MAX_DEPTH = 3
 PARSE_DATE_FIELDS_KEY_SUFFIX = 'At'
 
 ListOrDict = TypeVar('ListOrDict', List, Dict)
+T = TypeVar('T')
+
+
+def filter_out_none_values_recursively(dictionary: Dict) -> Dict:
+    """Return copy of the dictionary, recursively omitting all keys for which values are None."""
+    return cast(dict, filter_out_none_values_recursively_internal(dictionary))
 
 
 def filter_out_none_values_recursively_internal(
@@ -29,6 +35,11 @@ def filter_out_none_values_recursively_internal(
     if not result and remove_empty_dicts:
         return None
     return result
+
+
+def ignore_docs(method: T) -> T:
+    """Mark that a method's documentation should not be rendered. Functionally, this decorator is a noop."""
+    return method
 
 
 def is_content_type_json(content_type: str) -> bool:

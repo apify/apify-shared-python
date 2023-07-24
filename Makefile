@@ -1,4 +1,4 @@
-.PHONY: clean install-dev build publish twine-check lint type-check check-code format check-changelog-entry
+.PHONY: clean install-dev build publish twine-check lint unit-tests type-check check-code format check-changelog-entry
 
 clean:
 	rm -rf build dist .mypy_cache .pytest_cache src/*.egg-info __pycache__
@@ -20,10 +20,13 @@ twine-check:
 lint:
 	python3 -m flake8
 
+unit-tests:
+	python3 -m pytest -n auto -ra tests/unit
+
 type-check:
 	python3 -m mypy
 
-check-code: lint type-check
+check-code: lint type-check unit-tests
 
 format:
 	python3 -m isort src tests

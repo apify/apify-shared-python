@@ -4,6 +4,7 @@ filename =
     ./src/*.py,
 per-file-ignores =
     scripts/*: D
+    tests/*: D
 
 # Google docstring convention + D204 & D401
 docstring-convention = all
