@@ -11,9 +11,7 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Topic :: Software Development :: Libraries",
 ]
-dependencies = [
-  "httpx",
-]
+dependencies = []
 description = "Tools and constants shared across Apify projects."
 keywords = ["apify", "api", "shared", "scraping", "automation"]
 license = {text = "Apache Software License"}
