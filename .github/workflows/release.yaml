@@ -41,7 +41,7 @@ jobs:
       id-token: write
     environment:
       name: pypi
-      url: https://pypi.org/p/apify-client
+      url: https://pypi.org/p/apify-shared
 
     steps:
     - name: Checkout repository

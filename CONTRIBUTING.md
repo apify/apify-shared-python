@@ -32,7 +32,7 @@ We use `flake8` for linting, `mypy` for type checking and `pytest` for unit test
 
 ## Release process
 
-Publishing new versions to [PyPI](https://pypi.org/project/apify-client) happens automatically through GitHub Actions.
+Publishing new versions to [PyPI](https://pypi.org/project/apify-shared) happens automatically through GitHub Actions.
 
 On each commit to the `master` branch, a new beta release is published, taking the version number from `pyproject.toml`
 and automatically incrementing the beta version suffix by 1 from the last beta release published to PyPI.

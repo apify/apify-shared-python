@@ -1,3 +1,5 @@
 # Changelog
 
-[0.1.0](../../releases/tag/v0.1.0) - 2023-07-21
+[1.0.0](../../releases/tag/v1.0.0) - 2023-07-25
+
+Initial release of the package.

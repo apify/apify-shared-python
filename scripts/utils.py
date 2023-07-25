@@ -1,5 +1,4 @@
 import pathlib
-import re
 
 PACKAGE_NAME = 'apify_shared'
 REPO_ROOT = pathlib.Path(__file__).parent.resolve() / '..'
@@ -28,22 +27,12 @@ def set_current_package_version(version: str) -> None:
         for line in pyproject_toml_file:
             if line.startswith('version = '):
                 version_string_found = True
-                line = f'version = "{version}"'
+                line = f'version = "{version}"\n'
             updated_pyproject_toml_file_lines.append(line)
 
         if not version_string_found:
             raise RuntimeError('Unable to find version string.')
 
         pyproject_toml_file.seek(0)
-        pyproject_toml_file.write('\n'.join(updated_pyproject_toml_file_lines))
+        pyproject_toml_file.write(''.join(updated_pyproject_toml_file_lines))
         pyproject_toml_file.truncate()
-
-
-# Generate convert a docstring from a sync resource client method
-# into a doctring for its async resource client analogue
-def sync_to_async_docstring(docstring: str) -> str:
-    substitutions = [(r'Client', r'ClientAsync')]
-    res = docstring
-    for (pattern, replacement) in substitutions:
-        res = re.sub(pattern, replacement, res, flags=re.M)
-    return res
