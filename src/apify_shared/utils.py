@@ -1,3 +1,4 @@
+import contextlib
 import io
 import json
 import re
@@ -100,10 +101,8 @@ def parse_date_fields(data: ListOrDict, max_depth: int = PARSE_DATE_FIELDS_MAX_D
         def parse(key: str, value: object) -> object:
             parsed_value = value
             if key.endswith(PARSE_DATE_FIELDS_KEY_SUFFIX) and isinstance(value, str):
-                try:
+                with contextlib.suppress(ValueError):
                     parsed_value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%fZ').replace(tzinfo=timezone.utc)
-                except ValueError:
-                    pass
             elif isinstance(value, dict):
                 parsed_value = parse_date_fields(value, max_depth - 1)
             elif isinstance(value, list):
