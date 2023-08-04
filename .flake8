@@ -1,26 +1,26 @@
 [flake8]
 filename =
-    ./scripts/*.py,
-    ./src/*.py,
-    ./tests/*.py
+  ./scripts/*.py,
+  ./src/*.py,
+  ./tests/*.py
 per-file-ignores =
-    scripts/*: D
-    tests/*: D
+  scripts/*: D
+  tests/*: D
 
 # Google docstring convention + D204 & D401
 docstring-convention = all
 ignore =
-    D100
-    D104
-    D203
-    D213
-    D215
-    D406
-    D407
-    D408
-    D409
-    D413
-    U101
+  D100
+  D104
+  D203
+  D213
+  D215
+  D406
+  D407
+  D408
+  D409
+  D413
+  U101
 
 max_line_length = 150
 unused-arguments-ignore-overload-functions = True
