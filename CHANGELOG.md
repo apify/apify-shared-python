@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](../../releases/tag/v1.0.3) - 2023-08-04
+
+### Internal changes
+
+- Versions are 2nd level headings in the changelog.
+- Unify indentation in the configuration files.
+
 ## [1.0.2](../../releases/tag/v1.0.2) - 2023-08-02
 
 - Added the `ActorEnvVars` enum and new tests.
