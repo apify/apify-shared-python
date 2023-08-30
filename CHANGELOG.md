@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.4](../../releases/tag/v1.0.4) - Unreleased
+
+### Internal changes
+
+- Removed `pytest-randomly` Pytest plugin
+
 ## [1.0.3](../../releases/tag/v1.0.3) - 2023-08-04
 
 ### Internal changes
