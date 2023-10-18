@@ -19,7 +19,7 @@ license = { text = "Apache Software License" }
 name = "apify_shared"
 readme = "README.md"
 requires-python = ">=3.8"
-version = "1.0.4"
+version = "1.0.5"
 
 [project.optional-dependencies]
 dev = [
