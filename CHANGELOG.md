@@ -1,6 +1,10 @@
 # Changelog
 
-## [1.0.4](../../releases/tag/v1.0.4) - Unreleased
+## [1.0.5](../../releases/tag/v1.0.5) - Unreleased
+
+...
+
+## [1.0.4](../../releases/tag/v1.0.4) - 2023-10-18
 
 ### Added
 
@@ -9,11 +13,6 @@
 ### Internal changes
 
 - Removed `pytest-randomly` Pytest plugin
-
-## [1.0.3](../../releases/tag/v1.0.3) - 2023-08-04
-
-### Internal changes
-
 - Versions are 2nd level headings in the changelog.
 - Unify indentation in the configuration files.
 
