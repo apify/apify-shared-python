@@ -2,6 +2,10 @@
 
 ## [1.0.4](../../releases/tag/v1.0.4) - Unreleased
 
+### Added
+
+- Added support for Python 3.12
+
 ### Internal changes
 
 - Removed `pytest-randomly` Pytest plugin
