@@ -1,4 +1,4 @@
-.PHONY: clean install-dev build publish twine-check lint unit-tests type-check check-code format check-changelog-entry
+.PHONY: clean install-dev build publish twine-check lint unit-tests type-check check-code format check-version-availability check-changelog-entry
 
 clean:
 	rm -rf build dist .mypy_cache .pytest_cache src/*.egg-info __pycache__
@@ -31,6 +31,9 @@ check-code: lint type-check unit-tests
 format:
 	python3 -m isort src tests
 	python3 -m autopep8 --in-place --recursive src tests
+
+check-version-availability:
+	python3 scripts/check_version_availability.py
 
 check-changelog-entry:
 	python3 scripts/check_version_in_changelog.py
