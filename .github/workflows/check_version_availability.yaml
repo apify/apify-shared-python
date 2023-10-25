@@ -7,7 +7,6 @@ jobs:
   check_version_availability:
     name: Check version availability
     runs-on: ubuntu-latest
-    if: (!startsWith(github.event.pull_request.title, 'docs:'))
 
     steps:
       - name: Checkout repository
