@@ -1,15 +1,17 @@
+from __future__ import annotations
+
 import contextlib
 import io
 import json
 import re
 from datetime import datetime, timezone
 from enum import Enum
-from typing import Any, Dict, List, Optional, TypeVar, cast
+from typing import Any, TypeVar, cast
 
 PARSE_DATE_FIELDS_MAX_DEPTH = 3
 PARSE_DATE_FIELDS_KEY_SUFFIX = 'At'
 
-ListOrDict = TypeVar('ListOrDict', List, Dict)
+ListOrDict = TypeVar('ListOrDict', list, dict)
 T = TypeVar('T')
 
 
@@ -19,16 +21,16 @@ def ignore_docs(method: T) -> T:
 
 
 @ignore_docs
-def filter_out_none_values_recursively(dictionary: Dict) -> Dict:
+def filter_out_none_values_recursively(dictionary: dict) -> dict:
     """Return copy of the dictionary, recursively omitting all keys for which values are None."""
-    return cast(dict, _filter_out_none_values_recursively_internal(dictionary))
+    return cast(dict, filter_out_none_values_recursively_internal(dictionary))
 
 
 @ignore_docs
-def _filter_out_none_values_recursively_internal(
-    dictionary: Dict,
-    remove_empty_dicts: Optional[bool] = None,
-) -> Optional[Dict]:
+def filter_out_none_values_recursively_internal(
+    dictionary: dict,
+    remove_empty_dicts: bool | None = None,
+) -> dict | None:
     """Recursively filters out None values from a dictionary.
 
     Unfortunately, it's necessary to have an internal function for the correct result typing,
@@ -37,7 +39,7 @@ def _filter_out_none_values_recursively_internal(
     result = {}
     for k, v in dictionary.items():
         if isinstance(v, dict):
-            v = _filter_out_none_values_recursively_internal(v, remove_empty_dicts is True or remove_empty_dicts is None)
+            v = filter_out_none_values_recursively_internal(v, remove_empty_dicts is True or remove_empty_dicts is None)  # noqa: PLW2901
         if v is not None:
             result[k] = v
     if not result and remove_empty_dicts:
@@ -64,7 +66,7 @@ def is_content_type_text(content_type: str) -> bool:
 
 
 @ignore_docs
-def is_file_or_bytes(value: Any) -> bool:
+def is_file_or_bytes(value: Any) -> bool:  # noqa: ANN401
     """Check if the input value is a file-like object or bytes.
 
     The check for IOBase is not ideal, it would be better to use duck typing,
@@ -75,13 +77,13 @@ def is_file_or_bytes(value: Any) -> bool:
 
 
 @ignore_docs
-def json_dumps(obj: Any) -> str:
+def json_dumps(obj: Any) -> str:  # noqa: ANN401
     """Dump JSON to a string with the correct settings and serializer."""
     return json.dumps(obj, ensure_ascii=False, indent=2, default=str)
 
 
 @ignore_docs
-def maybe_extract_enum_member_value(maybe_enum_member: Any) -> Any:
+def maybe_extract_enum_member_value(maybe_enum_member: Any) -> Any:  # noqa: ANN401
     """Extract the value of an enumeration member if it is an Enum, otherwise return the original value."""
     if isinstance(maybe_enum_member, Enum):
         return maybe_enum_member.value
@@ -98,6 +100,7 @@ def parse_date_fields(data: ListOrDict, max_depth: int = PARSE_DATE_FIELDS_MAX_D
         return [parse_date_fields(item, max_depth - 1) for item in data]
 
     if isinstance(data, dict):
+
         def parse(key: str, value: object) -> object:
             parsed_value = value
             if key.endswith(PARSE_DATE_FIELDS_KEY_SUFFIX) and isinstance(value, str):

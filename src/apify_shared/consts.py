@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from enum import Enum
-from typing import List, Literal, get_args
+from typing import Literal, get_args
 
 
 class ActorJobStatus(str, Enum):
@@ -23,9 +25,14 @@ class ActorJobStatus(str, Enum):
     ABORTED = 'ABORTED'
 
     @property
-    def _is_terminal(self) -> bool:
+    def _is_terminal(self: ActorJobStatus) -> bool:
         """Whether this actor job status is terminal."""
-        return self in (ActorJobStatus.SUCCEEDED, ActorJobStatus.FAILED, ActorJobStatus.TIMED_OUT, ActorJobStatus.ABORTED)
+        return self in (
+            ActorJobStatus.SUCCEEDED,
+            ActorJobStatus.FAILED,
+            ActorJobStatus.TIMED_OUT,
+            ActorJobStatus.ABORTED,
+        )
 
 
 class ActorSourceType(str, Enum):
@@ -57,7 +64,7 @@ class ActorEventTypes(str, Enum):
 class ActorEnvVars(str, Enum):
     """Possible Apify-specific environment variables prefixed with "ACTOR_"."""
 
-    # TODO: document these
+    # TODO: document these  # noqa: TD002, TD003
 
     #: BUILD_ID
     BUILD_ID = 'ACTOR_BUILD_ID'
@@ -96,7 +103,7 @@ class ActorEnvVars(str, Enum):
 class ApifyEnvVars(str, Enum):
     """Possible Apify-specific environment variables prefixed with "APIFY_"."""
 
-    # TODO: document these
+    # TODO: document these  # noqa: TD002, TD003
 
     #: API_BASE_URL
     API_BASE_URL = 'APIFY_API_BASE_URL'
@@ -273,13 +280,11 @@ INTEGER_ENV_VARS_TYPE = Literal[
     ApifyEnvVars.SYSTEM_INFO_INTERVAL_MILLIS,
 ]
 
-INTEGER_ENV_VARS: List[INTEGER_ENV_VARS_TYPE] = list(get_args(INTEGER_ENV_VARS_TYPE))
+INTEGER_ENV_VARS: list[INTEGER_ENV_VARS_TYPE] = list(get_args(INTEGER_ENV_VARS_TYPE))
 
-FLOAT_ENV_VARS_TYPE = Literal[
-    ApifyEnvVars.MAX_USED_CPU_RATIO,
-]
+FLOAT_ENV_VARS_TYPE = Literal[ApifyEnvVars.MAX_USED_CPU_RATIO,]
 
-FLOAT_ENV_VARS: List[FLOAT_ENV_VARS_TYPE] = list(get_args(FLOAT_ENV_VARS_TYPE))
+FLOAT_ENV_VARS: list[FLOAT_ENV_VARS_TYPE] = list(get_args(FLOAT_ENV_VARS_TYPE))
 
 BOOL_ENV_VARS_TYPE = Literal[
     ApifyEnvVars.DISABLE_BROWSER_SANDBOX,
@@ -291,7 +296,7 @@ BOOL_ENV_VARS_TYPE = Literal[
     ApifyEnvVars.XVFB,
 ]
 
-BOOL_ENV_VARS: List[BOOL_ENV_VARS_TYPE] = list(get_args(BOOL_ENV_VARS_TYPE))
+BOOL_ENV_VARS: list[BOOL_ENV_VARS_TYPE] = list(get_args(BOOL_ENV_VARS_TYPE))
 
 DATETIME_ENV_VARS_TYPE = Literal[
     # Actor env vars
@@ -302,7 +307,7 @@ DATETIME_ENV_VARS_TYPE = Literal[
     ApifyEnvVars.TIMEOUT_AT,
 ]
 
-DATETIME_ENV_VARS: List[DATETIME_ENV_VARS_TYPE] = list(get_args(DATETIME_ENV_VARS_TYPE))
+DATETIME_ENV_VARS: list[DATETIME_ENV_VARS_TYPE] = list(get_args(DATETIME_ENV_VARS_TYPE))
 
 STRING_ENV_VARS_TYPE = Literal[
     # Actor env vars
@@ -350,4 +355,4 @@ STRING_ENV_VARS_TYPE = Literal[
     ApifyEnvVars.WORKFLOW_KEY,
 ]
 
-STRING_ENV_VARS: List[STRING_ENV_VARS_TYPE] = list(get_args(STRING_ENV_VARS_TYPE))
+STRING_ENV_VARS: list[STRING_ENV_VARS_TYPE] = list(get_args(STRING_ENV_VARS_TYPE))

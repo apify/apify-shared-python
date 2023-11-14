@@ -1,4 +1,6 @@
-from typing import Dict, Generic, List, TypeVar
+from __future__ import annotations
+
+from typing import Generic, TypeVar
 
 from .utils import ignore_docs
 
@@ -9,7 +11,7 @@ class ListPage(Generic[T]):
     """A single page of items returned from a list() method."""
 
     #: list: List of returned objects on this page
-    items: List[T]
+    items: list[T]
     #: int: Count of the returned objects on this page
     count: int
     #: int: The limit on the number of returned objects offset specified in the API call
@@ -22,7 +24,7 @@ class ListPage(Generic[T]):
     desc: bool
 
     @ignore_docs
-    def __init__(self, data: Dict) -> None:
+    def __init__(self: ListPage, data: dict) -> None:
         """Initialize a ListPage instance from the API response data."""
         self.items = data['items'] if 'items' in data else []
         self.offset = data['offset'] if 'offset' in data else 0

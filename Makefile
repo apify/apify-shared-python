@@ -1,7 +1,9 @@
 .PHONY: clean install-dev build publish twine-check lint unit-tests type-check check-code format check-version-availability check-changelog-entry
 
+DIRS_WITH_CODE = src tests scripts
+
 clean:
-	rm -rf build dist .mypy_cache .pytest_cache src/*.egg-info __pycache__
+	rm -rf build dist .mypy_cache .pytest_cache .ruff_cache src/*.egg-info __pycache__
 
 install-dev:
 	python -m pip install --upgrade pip
@@ -18,22 +20,22 @@ twine-check:
 	python -m twine check dist/*
 
 lint:
-	python3 -m flake8
+	python -m ruff check $(DIRS_WITH_CODE)
 
 unit-tests:
-	python3 -m pytest -n auto -ra tests/unit
+	python -m pytest -n auto -ra tests/unit
 
 type-check:
-	python3 -m mypy
+	python -m mypy $(DIRS_WITH_CODE)
 
 check-code: lint type-check unit-tests
 
 format:
-	python3 -m isort src tests
-	python3 -m autopep8 --in-place --recursive src tests
+	python -m ruff check --fix $(DIRS_WITH_CODE)
+	python -m ruff format $(DIRS_WITH_CODE)
 
 check-version-availability:
-	python3 scripts/check_version_availability.py
+	python scripts/check_version_availability.py
 
 check-changelog-entry:
-	python3 scripts/check_version_in_changelog.py
+	python scripts/check_version_in_changelog.py
