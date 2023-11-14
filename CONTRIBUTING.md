@@ -2,7 +2,7 @@
 
 ## Environment
 
-For local development, it is required to have Python 3.8 installed.
+For local development, it is required to have Python 3.8 (or a later version) installed.
 
 It is recommended to set up a virtual environment while developing this package to isolate your development environment,
 however, due to the many varied ways Python can be installed and virtual environments can be set up,
@@ -24,7 +24,7 @@ To install this package and its development dependencies, run `make install-dev`
 
 ## Formatting
 
-We use `ruff` and `isort` to automatically format the code to a common format. To run the formatting, just run `make format`.
+We use `ruff` to automatically format the code to a common format. To run the formatting, just run `make format`.
 
 ## Linting, type-checking and unit testing
 

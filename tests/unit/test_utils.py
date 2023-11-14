@@ -28,7 +28,7 @@ def test__maybe_extract_enum_member_value() -> None:
     assert maybe_extract_enum_member_value(None) is None
 
 
-def test__filter_out_none_values_recursively() -> None:  # Copypasted from client
+def test__filter_out_none_values_recursively() -> None:
     assert filter_out_none_values_recursively({'k1': 'v1'}) == {'k1': 'v1'}
     assert filter_out_none_values_recursively({'k1': None}) == {}
     assert filter_out_none_values_recursively(
@@ -36,7 +36,7 @@ def test__filter_out_none_values_recursively() -> None:  # Copypasted from clien
     ) == {'k1': 'v1', 'k3': {'k4': 'v4'}}
 
 
-def test_filter_out_none_values_recursively_internal() -> None:  # Copypasted from client
+def test_filter_out_none_values_recursively_internal() -> None:
     assert filter_out_none_values_recursively_internal({}) == {}
     assert filter_out_none_values_recursively_internal({'k1': {}}) == {}
     assert filter_out_none_values_recursively_internal({}, remove_empty_dicts=False) == {}
@@ -45,7 +45,7 @@ def test_filter_out_none_values_recursively_internal() -> None:  # Copypasted fr
     assert filter_out_none_values_recursively_internal({'k1': {}}, remove_empty_dicts=True) is None
 
 
-def test__is_content_type_json() -> None:  # Copypasted from client
+def test__is_content_type_json() -> None:
     # returns True for the right content types
     assert is_content_type_json('application/json') is True
     assert is_content_type_json('application/jsonc') is True
@@ -54,7 +54,7 @@ def test__is_content_type_json() -> None:  # Copypasted from client
     assert is_content_type_json('application/ld+json') is False
 
 
-def test__is_content_type_xml() -> None:  # Copypasted from client
+def test__is_content_type_xml() -> None:
     # returns True for the right content types
     assert is_content_type_xml('application/xml') is True
     assert is_content_type_xml('application/xhtml+xml') is True
@@ -63,7 +63,7 @@ def test__is_content_type_xml() -> None:  # Copypasted from client
     assert is_content_type_xml('text/html') is False
 
 
-def test__is_content_type_text() -> None:  # Copypasted from client
+def test__is_content_type_text() -> None:
     # returns True for the right content types
     assert is_content_type_text('text/html') is True
     assert is_content_type_text('text/plain') is True
@@ -72,7 +72,7 @@ def test__is_content_type_text() -> None:  # Copypasted from client
     assert is_content_type_text('application/text') is False
 
 
-def test__is_file_or_bytes() -> None:  # Copypasted from client
+def test__is_file_or_bytes() -> None:
     # returns True for the right value types
     assert is_file_or_bytes(b'abc') is True
     assert is_file_or_bytes(bytearray.fromhex('F0F1F2')) is True
