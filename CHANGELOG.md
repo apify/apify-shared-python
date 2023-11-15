@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.5](../../releases/tag/v1.0.5) - Unreleased
+## [1.1.0](../../releases/tag/v1.1.0) - Unreleased
 
 ### Internal changes
 
