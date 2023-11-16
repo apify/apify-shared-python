@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import io
 from datetime import datetime, timezone
 from enum import Enum
