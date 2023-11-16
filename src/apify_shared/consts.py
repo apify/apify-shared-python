@@ -25,7 +25,7 @@ class ActorJobStatus(str, Enum):
     ABORTED = 'ABORTED'
 
     @property
-    def _is_terminal(self: ActorJobStatus) -> bool:
+    def is_terminal(self: ActorJobStatus) -> bool:
         """Whether this actor job status is terminal."""
         return self in (
             ActorJobStatus.SUCCEEDED,
@@ -64,7 +64,7 @@ class ActorEventTypes(str, Enum):
 class ActorEnvVars(str, Enum):
     """Possible Apify-specific environment variables prefixed with "ACTOR_"."""
 
-    # TODO: document these  # noqa: TD002, TD003
+    # TODO: document these  # noqa: TD003
 
     #: BUILD_ID
     BUILD_ID = 'ACTOR_BUILD_ID'
@@ -103,7 +103,7 @@ class ActorEnvVars(str, Enum):
 class ApifyEnvVars(str, Enum):
     """Possible Apify-specific environment variables prefixed with "APIFY_"."""
 
-    # TODO: document these  # noqa: TD002, TD003
+    # TODO: document these  # noqa: TD003
 
     #: API_BASE_URL
     API_BASE_URL = 'APIFY_API_BASE_URL'
