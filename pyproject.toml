@@ -1,5 +1,12 @@
 [project]
+name = "apify_shared"
+version = "1.1.0"
+description = "Tools and constants shared across Apify projects."
+readme = "README.md"
+license = { text = "Apache Software License" }
 authors = [{ name = "Apify Technologies s.r.o.", email = "support@apify.com" }]
+keywords = ["apify", "api", "shared", "scraping", "automation"]
+
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -12,14 +19,9 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Libraries",
 ]
-dependencies = []
-description = "Tools and constants shared across Apify projects."
-keywords = ["apify", "api", "shared", "scraping", "automation"]
-license = { text = "Apache Software License" }
-name = "apify_shared"
-readme = "README.md"
+
 requires-python = ">=3.8"
-version = "1.1.0"
+dependencies = []
 
 [project.optional-dependencies]
 dev = [
