@@ -66,7 +66,7 @@ def is_content_type_text(content_type: str) -> bool:
 
 
 @ignore_docs
-def is_file_or_bytes(value: Any) -> bool:  # noqa: ANN401
+def is_file_or_bytes(value: Any) -> bool:
     """Check if the input value is a file-like object or bytes.
 
     The check for IOBase is not ideal, it would be better to use duck typing,
@@ -77,13 +77,13 @@ def is_file_or_bytes(value: Any) -> bool:  # noqa: ANN401
 
 
 @ignore_docs
-def json_dumps(obj: Any) -> str:  # noqa: ANN401
+def json_dumps(obj: Any) -> str:
     """Dump JSON to a string with the correct settings and serializer."""
     return json.dumps(obj, ensure_ascii=False, indent=2, default=str)
 
 
 @ignore_docs
-def maybe_extract_enum_member_value(maybe_enum_member: Any) -> Any:  # noqa: ANN401
+def maybe_extract_enum_member_value(maybe_enum_member: Any) -> Any:
     """Extract the value of an enumeration member if it is an Enum, otherwise return the original value."""
     if isinstance(maybe_enum_member, Enum):
         return maybe_enum_member.value
