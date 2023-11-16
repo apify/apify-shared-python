@@ -1,10 +1,12 @@
+from __future__ import annotations
+
 import io
 from datetime import datetime, timezone
 from enum import Enum
 
 from apify_shared.utils import (
-    _filter_out_none_values_recursively_internal,
     filter_out_none_values_recursively,
+    filter_out_none_values_recursively_internal,
     ignore_docs,
     is_content_type_json,
     is_content_type_text,
@@ -28,23 +30,24 @@ def test__maybe_extract_enum_member_value() -> None:
     assert maybe_extract_enum_member_value(None) is None
 
 
-def test__filter_out_none_values_recursively() -> None:  # Copypasted from client
+def test__filter_out_none_values_recursively() -> None:
     assert filter_out_none_values_recursively({'k1': 'v1'}) == {'k1': 'v1'}
     assert filter_out_none_values_recursively({'k1': None}) == {}
-    assert filter_out_none_values_recursively({'k1': 'v1', 'k2': None, 'k3': {'k4': 'v4', 'k5': None}, 'k6': {'k7': None}}) \
-        == {'k1': 'v1', 'k3': {'k4': 'v4'}}
+    assert filter_out_none_values_recursively(
+        {'k1': 'v1', 'k2': None, 'k3': {'k4': 'v4', 'k5': None}, 'k6': {'k7': None}}
+    ) == {'k1': 'v1', 'k3': {'k4': 'v4'}}
 
 
-def test__filter_out_none_values_recursively_internal() -> None:  # Copypasted from client
-    assert _filter_out_none_values_recursively_internal({}) == {}
-    assert _filter_out_none_values_recursively_internal({'k1': {}}) == {}
-    assert _filter_out_none_values_recursively_internal({}, False) == {}
-    assert _filter_out_none_values_recursively_internal({'k1': {}}, False) == {'k1': {}}
-    assert _filter_out_none_values_recursively_internal({}, True) is None
-    assert _filter_out_none_values_recursively_internal({'k1': {}}, True) is None
+def test_filter_out_none_values_recursively_internal() -> None:
+    assert filter_out_none_values_recursively_internal({}) == {}
+    assert filter_out_none_values_recursively_internal({'k1': {}}) == {}
+    assert filter_out_none_values_recursively_internal({}, remove_empty_dicts=False) == {}
+    assert filter_out_none_values_recursively_internal({'k1': {}}, remove_empty_dicts=False) == {'k1': {}}
+    assert filter_out_none_values_recursively_internal({}, remove_empty_dicts=True) is None
+    assert filter_out_none_values_recursively_internal({'k1': {}}, remove_empty_dicts=True) is None
 
 
-def test__is_content_type_json() -> None:  # Copypasted from client
+def test__is_content_type_json() -> None:
     # returns True for the right content types
     assert is_content_type_json('application/json') is True
     assert is_content_type_json('application/jsonc') is True
@@ -53,7 +56,7 @@ def test__is_content_type_json() -> None:  # Copypasted from client
     assert is_content_type_json('application/ld+json') is False
 
 
-def test__is_content_type_xml() -> None:  # Copypasted from client
+def test__is_content_type_xml() -> None:
     # returns True for the right content types
     assert is_content_type_xml('application/xml') is True
     assert is_content_type_xml('application/xhtml+xml') is True
@@ -62,7 +65,7 @@ def test__is_content_type_xml() -> None:  # Copypasted from client
     assert is_content_type_xml('text/html') is False
 
 
-def test__is_content_type_text() -> None:  # Copypasted from client
+def test__is_content_type_text() -> None:
     # returns True for the right content types
     assert is_content_type_text('text/html') is True
     assert is_content_type_text('text/plain') is True
@@ -71,7 +74,7 @@ def test__is_content_type_text() -> None:  # Copypasted from client
     assert is_content_type_text('application/text') is False
 
 
-def test__is_file_or_bytes() -> None:  # Copypasted from client
+def test__is_file_or_bytes() -> None:
     # returns True for the right value types
     assert is_file_or_bytes(b'abc') is True
     assert is_file_or_bytes(bytearray.fromhex('F0F1F2')) is True
@@ -93,14 +96,16 @@ def test__json_dumps() -> None:
   },
   "datetime": "2022-01-01 00:00:00+00:00"
 }"""
-    actual = json_dumps({
-        'string': '123',
-        'number': 456,
-        'nested': {
-            'abc': 'def',
-        },
-        'datetime': datetime(2022, 1, 1, tzinfo=timezone.utc),
-    })
+    actual = json_dumps(
+        {
+            'string': '123',
+            'number': 456,
+            'nested': {
+                'abc': 'def',
+            },
+            'datetime': datetime(2022, 1, 1, tzinfo=timezone.utc),
+        }
+    )
     assert actual == expected
 
 
@@ -121,13 +126,15 @@ def test__parse_date_fields() -> None:
 
     # parses nested dates
     expected_datetime = datetime(2020, 2, 29, 10, 9, 8, 100000, timezone.utc)
-    assert parse_date_fields({'a': {'b': {'c': {'createdAt': '2020-02-29T10:09:08.100Z'}}}}) \
-        == {'a': {'b': {'c': {'createdAt': expected_datetime}}}}
+    assert parse_date_fields({'a': {'b': {'c': {'createdAt': '2020-02-29T10:09:08.100Z'}}}}) == {
+        'a': {'b': {'c': {'createdAt': expected_datetime}}}
+    }
 
     # doesn't parse dates nested too deep
     expected_datetime = datetime(2020, 2, 29, 10, 9, 8, 100000, timezone.utc)
-    assert parse_date_fields({'a': {'b': {'c': {'d': {'createdAt': '2020-02-29T10:09:08.100Z'}}}}}) \
-        == {'a': {'b': {'c': {'d': {'createdAt': '2020-02-29T10:09:08.100Z'}}}}}
+    assert parse_date_fields({'a': {'b': {'c': {'d': {'createdAt': '2020-02-29T10:09:08.100Z'}}}}}) == {
+        'a': {'b': {'c': {'d': {'createdAt': '2020-02-29T10:09:08.100Z'}}}}
+    }
 
     # doesn't die when the date can't be parsed
     assert parse_date_fields({'createdAt': 'NOT_A_DATE'}) == {'createdAt': 'NOT_A_DATE'}
