@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 import pathlib
 from urllib.error import HTTPError
@@ -27,11 +29,10 @@ def set_current_package_version(version: str) -> None:
         updated_pyproject_toml_file_lines = []
         version_string_found = False
         for line in pyproject_toml_file:
-            processed_line = line
             if line.startswith('version = '):
                 version_string_found = True
-                processed_line = f'version = "{version}"\n'
-            updated_pyproject_toml_file_lines.append(processed_line)
+                line = f'version = "{version}"\n'  # noqa: PLW2901
+            updated_pyproject_toml_file_lines.append(line)
 
         if not version_string_found:
             raise RuntimeError('Unable to find version string.')
@@ -48,8 +49,8 @@ def get_published_package_versions() -> list:
         package_data = json.load(urlopen(package_info_url))  # noqa: S310
         published_versions = list(package_data['releases'].keys())
     # If the URL returns 404, it means the package has no releases yet (which is okay in our case)
-    except HTTPError as e:
-        if e.code != 404:
+    except HTTPError as exc:
+        if exc.code != 404:
             raise
         published_versions = []
     return published_versions
