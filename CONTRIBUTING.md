@@ -20,15 +20,33 @@ and [direnv](https://github.com/direnv/direnv) to automatically activate/deactiv
 
 ## Dependencies
 
-To install this package and its development dependencies, run `make install-dev`
+To install this package and its development dependencies, run `make install-dev`.
 
-## Formatting
+## Code checking
 
-We use `ruff` to automatically format the code to a common format. To run the formatting, just run `make format`.
+To run all our code checking tools together, just run `make check-code`.
 
-## Linting, type-checking and unit testing
+### Linting
 
-We use `ruff` for linting, `mypy` for type checking and `pytest` for unit testing. To run these tools, just run `make check-code`.
+We use [ruff](https://docs.astral.sh/ruff/) for linting to to analyze the code for potential issues and enforce
+uniformed code style. See the `pyproject.toml` for its configuration. To run the linting, just run `make lint`.
+
+### Formatting
+
+We use [ruff](https://docs.astral.sh/ruff/) for automated code formatting. It formats the code to follow uniformed
+code style and addresses auto-fixable linting issues. See the `pyproject.toml` for its configuration. To run
+the formatting, just run `make format`.
+
+### Type checking
+
+We use [mypy](https://mypy.readthedocs.io/en/stable/) for type checking. See the `mypy.ini` for its configuration.
+To run the type checking, just run `make type-check`.
+
+### Unit tests
+
+We use [pytest](https://docs.pytest.org/) as a testing framework with many plugins. See the `pyproject.toml` for
+both its configuration and the list of installed plugins. To run unit tests execute `make unit-tests`. To run unit
+tests with HTML coverage report execute `make unit-tests-cov`.
 
 ## Release process
 
