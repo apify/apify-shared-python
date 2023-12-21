@@ -23,7 +23,10 @@ lint:
 	python3 -m ruff check $(DIRS_WITH_CODE)
 
 unit-tests:
-	python3 -m pytest -n auto -ra tests/unit
+	python3 -m pytest -n auto -ra tests/unit --cov=src/apify_shared
+
+unit-tests-cov:
+	python3 -m pytest -n auto -ra tests/unit --cov=src/apify_shared --cov-report=html
 
 type-check:
 	python3 -m mypy $(DIRS_WITH_CODE)
