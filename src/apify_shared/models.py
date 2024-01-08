@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Generic, TypeVar
 
-from .utils import ignore_docs
+from apify_shared.utils import ignore_docs
 
 T = TypeVar('T')
 
