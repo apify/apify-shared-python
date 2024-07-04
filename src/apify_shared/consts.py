@@ -88,6 +88,8 @@ class ActorEnvVars(str, Enum):
     MEMORY_MBYTES = 'ACTOR_MEMORY_MBYTES'
     #: RUN_ID
     RUN_ID = 'ACTOR_RUN_ID'
+    #: STANDBY_PORT
+    STANDBY_PORT = 'ACTOR_STANDBY_PORT'
     #: STARTED_AT
     STARTED_AT = 'ACTOR_STARTED_AT'
     #: TASK_ID
@@ -268,6 +270,7 @@ INTEGER_ENV_VARS_TYPE = Literal[
     # Actor env vars
     ActorEnvVars.MAX_PAID_DATASET_ITEMS,
     ActorEnvVars.MEMORY_MBYTES,
+    ActorEnvVars.STANDBY_PORT,
     ActorEnvVars.WEB_SERVER_PORT,
     # Apify env vars
     ApifyEnvVars.CONTAINER_PORT,
