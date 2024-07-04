@@ -2,7 +2,7 @@
 
 ## [1.1.2](../../releases/tag/v1.1.2) - Unreleased
 
-- ...
+- Added constants for Actor Standby
 
 ## [1.1.1](../../releases/tag/v1.1.1) - 2023-01-08
 
