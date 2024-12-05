@@ -1,6 +1,14 @@
 # Changelog
 
+## [1.2.0](../../releases/tag/v1.2.0) - 2024-12-05
+
+### Added
+
+- Added new environment variables
+
 ## [1.1.2](../../releases/tag/v1.1.2) - 2024-07-04
+
+### Added
 
 - Added constants for Actor Standby
 

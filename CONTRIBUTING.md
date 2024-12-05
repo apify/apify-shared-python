@@ -86,7 +86,7 @@ Currently, there is no explicit approval process, so when you are done with the 
 
 Once released, manually bump the version in `pyproject.toml` ([commit example](https://github.com/apify/apify-shared-python/commit/24a269bcf046df7202a8652ee788ffe9a461e58b)).
 
-## Maintanance
+## Maintenance
 
 ### Removing Support for an outdated Python version
 
