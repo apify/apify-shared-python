@@ -4,6 +4,7 @@ import contextlib
 import io
 import json
 import re
+import secrets
 from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, TypeVar, cast
@@ -115,3 +116,9 @@ def parse_date_fields(data: ListOrDict, max_depth: int = PARSE_DATE_FIELDS_MAX_D
         return {key: parse(key, value) for (key, value) in data.items()}
 
     return data
+
+@ignore_docs
+def crypto_random_object_id(length: int = 17) -> str:
+    """Generates a random object ID."""
+    chars = 'abcdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    return ''.join(secrets.choice(chars) for _ in range(length))
