@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 
 from apify_shared.consts import (
     BOOL_ENV_VARS,
+    COMMA_SEPARATED_LIST_ENV_VARS,
     DATETIME_ENV_VARS,
     FLOAT_ENV_VARS,
     INTEGER_ENV_VARS,
@@ -20,14 +21,28 @@ if TYPE_CHECKING:
 class TestConsts:
     def test_env_vars_types_unique(self: TestConsts) -> None:
         """Test that env var types don't contain any item twice."""
-        for env_var_type in [BOOL_ENV_VARS, DATETIME_ENV_VARS, FLOAT_ENV_VARS, INTEGER_ENV_VARS, STRING_ENV_VARS]:
+        for env_var_type in [
+            BOOL_ENV_VARS,
+            COMMA_SEPARATED_LIST_ENV_VARS,
+            DATETIME_ENV_VARS,
+            FLOAT_ENV_VARS,
+            INTEGER_ENV_VARS,
+            STRING_ENV_VARS,
+        ]:
             assert isinstance(env_var_type, list)
             assert len(env_var_type) == len(set(env_var_type))
 
     def test_env_vars_types_do_not_overlap(self: TestConsts) -> None:
         """Test that there is no overlap between env var types."""
         for first, second in itertools.combinations(
-            [BOOL_ENV_VARS, DATETIME_ENV_VARS, FLOAT_ENV_VARS, INTEGER_ENV_VARS, STRING_ENV_VARS],
+            [
+                BOOL_ENV_VARS,
+                COMMA_SEPARATED_LIST_ENV_VARS,
+                DATETIME_ENV_VARS,
+                FLOAT_ENV_VARS,
+                INTEGER_ENV_VARS,
+                STRING_ENV_VARS,
+            ],
             r=2,
         ):
             assert isinstance(first, list)
@@ -38,6 +53,7 @@ class TestConsts:
         """Test that all env vars from `ApifyEnvVars` and `ActorEnvVars` have a defined type."""
         env_vars_from_types = set(
             list(BOOL_ENV_VARS)
+            + list(COMMA_SEPARATED_LIST_ENV_VARS)
             + list(DATETIME_ENV_VARS)
             + list(FLOAT_ENV_VARS)
             + list(INTEGER_ENV_VARS)
