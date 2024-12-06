@@ -1,6 +1,12 @@
 # Changelog
 
-## [1.2.0](../../releases/tag/v1.2.0) - 2024-12-05
+## [1.2.1](../../releases/tag/v1.2.1) - 2024-12-05
+
+### Changed
+
+- Changed `ACTOR_BUILD_TAGS` to be a comma-separated list variable
+
+## [1.2.0](../../releases/tag/v1.2.0) - 2024-12-04
 
 ### Added
 
