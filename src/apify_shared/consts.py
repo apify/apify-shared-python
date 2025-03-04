@@ -119,8 +119,6 @@ class ApifyEnvVars(str, Enum):
     API_BASE_URL = 'APIFY_API_BASE_URL'
     #: API_PUBLIC_BASE_URL
     API_PUBLIC_BASE_URL = 'APIFY_API_PUBLIC_BASE_URL'
-    #: CHROME_EXECUTABLE_PATH
-    CHROME_EXECUTABLE_PATH = 'APIFY_CHROME_EXECUTABLE_PATH'
     #: DEDICATED_CPUS
     DEDICATED_CPUS = 'APIFY_DEDICATED_CPUS'
     #: DEFAULT_BROWSER_PATH
@@ -175,8 +173,6 @@ class ApifyEnvVars(str, Enum):
     USER_ID = 'APIFY_USER_ID'
     #: WORKFLOW_KEY
     WORKFLOW_KEY = 'APIFY_WORKFLOW_KEY'
-    #: XVFB
-    XVFB = 'APIFY_XVFB'
 
     # Replaced by ActorEnvVars, kept for backward compatibility:
     #: ACTOR_BUILD_ID
@@ -307,7 +303,6 @@ BOOL_ENV_VARS_TYPE = Literal[
     ApifyEnvVars.IS_AT_HOME,
     ApifyEnvVars.PERSIST_STORAGE,
     ApifyEnvVars.PURGE_ON_START,
-    ApifyEnvVars.XVFB,
 ]
 
 BOOL_ENV_VARS: list[BOOL_ENV_VARS_TYPE] = list(get_args(BOOL_ENV_VARS_TYPE))
@@ -349,7 +344,6 @@ STRING_ENV_VARS_TYPE = Literal[
     ApifyEnvVars.ACTOR_TASK_ID,
     ApifyEnvVars.API_BASE_URL,
     ApifyEnvVars.API_PUBLIC_BASE_URL,
-    ApifyEnvVars.CHROME_EXECUTABLE_PATH,
     ApifyEnvVars.CONTAINER_URL,
     ApifyEnvVars.DEFAULT_BROWSER_PATH,
     ApifyEnvVars.DEFAULT_DATASET_ID,
