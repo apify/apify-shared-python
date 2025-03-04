@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.0](../../releases/tag/v1.3.0) - 2025-03-04
+
+### Removed
+
+- Removed unused consts (`CHROME_EXECUTABLE_PATH`, `XVFB`).
+
 ## [1.2.1](../../releases/tag/v1.2.1) - 2024-12-05
 
 ### Changed
