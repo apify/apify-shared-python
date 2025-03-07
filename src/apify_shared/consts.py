@@ -268,6 +268,8 @@ class MetaOrigin(str, Enum):
     WEBHOOK = 'WEBHOOK'
     #: Job started by another actor run
     ACTOR = 'ACTOR'
+    #: Job started via Actor standby
+    STANDBY = 'STANDBY'
 
 
 INTEGER_ENV_VARS_TYPE = Literal[
