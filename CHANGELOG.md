@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.2](../../releases/tag/v1.3.2) - 2025-03-20
+
+### Added
+
+- Added CLI option to origin enum in actor run model
+
 ## [1.3.1](../../releases/tag/v1.3.1) - 2025-03-07
 
 ### Added
