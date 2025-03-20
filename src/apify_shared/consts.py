@@ -270,6 +270,8 @@ class MetaOrigin(str, Enum):
     ACTOR = 'ACTOR'
     #: Job started via Actor standby
     STANDBY = 'STANDBY'
+    #: Job started via Apify CLI
+    CLI = 'CLI'
 
 
 INTEGER_ENV_VARS_TYPE = Literal[
