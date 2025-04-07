@@ -371,10 +371,34 @@ STRING_ENV_VARS_TYPE = Literal[
 
 STRING_ENV_VARS: list[STRING_ENV_VARS_TYPE] = list(get_args(STRING_ENV_VARS_TYPE))
 
-COMMA_SEPARATED_LIST_ENV_VARS_TYPE = Literal[
-    ActorEnvVars.BUILD_TAGS,
-]
+COMMA_SEPARATED_LIST_ENV_VARS_TYPE = Literal[ActorEnvVars.BUILD_TAGS,]
 
 COMMA_SEPARATED_LIST_ENV_VARS: list[COMMA_SEPARATED_LIST_ENV_VARS_TYPE] = list(
     get_args(COMMA_SEPARATED_LIST_ENV_VARS_TYPE)
 )
+
+
+class StorageGeneralAccess(str, Enum):
+    """Storage setting determining how others can access the storage.
+
+    This setting overrides the user setting of the storage owner.
+    """
+
+    #: Only signed-in users with explicit access can read this storage.
+    RESTRICTED = 'RESTRICTED'
+    #: Anyone with a link or the unique storage ID can read this storage.
+    ANYONE_WITH_ID_CAN_READ = 'ANYONE_WITH_ID_CAN_READ'
+    #: Anyone with a link, ID, or storage name can read this storage.
+    ANYONE_WITH_NAME_CAN_READ = 'ANYONE_WITH_NAME_CAN_READ'
+
+
+class RunGeneralAccess(str, Enum):
+    """Run setting determining how others can access the run.
+
+    This setting overrides the user setting of the run owner.
+    """
+
+    #: Only signed-in users with explicit access can read this run.
+    RESTRICTED = 'RESTRICTED'
+    #: Anyone with a link or the unique run ID can read this run.
+    ANYONE_WITH_ID_CAN_READ = 'ANYONE_WITH_ID_CAN_READ'
