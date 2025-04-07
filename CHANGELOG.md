@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.0](../../releases/tag/v1.4.0) - 2025-04-7
+
+### Added
+
+- Added general access enums to consts
+
 ## [1.3.2](../../releases/tag/v1.3.2) - 2025-03-20
 
 ### Added
