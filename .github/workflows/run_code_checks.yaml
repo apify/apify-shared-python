@@ -3,6 +3,7 @@ name: Run code checks
 on:
   # Trigger code checks on opening a new pull request.
   pull_request:
+  workflow_call:
 
 jobs:
   lint_check:
