@@ -2,15 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-<!-- git-cliff-unreleased-start -->
-## 1.4.0 - **not yet released**
+## [1.4.0](https://github.com/apify/apify-shared-python/releases/tag/v1.4.0) (2025-04-11)
 
 ### 🚀 Features
 
 - Add general access enum to consts ([#34](https://github.com/apify/apify-shared-python/pull/34)) ([6de5a2f](https://github.com/apify/apify-shared-python/commit/6de5a2f901625def4b45a2af1d24f8d4ab33664c)) by [@tobice](https://github.com/tobice)
 
 
-<!-- git-cliff-unreleased-end -->
 ## [1.3.2](https://github.com/apify/apify-shared-python/releases/tag/v1.3.2) (2025-03-20)
 
 ### 🐛 Bug Fixes
