@@ -384,6 +384,8 @@ class StorageGeneralAccess(str, Enum):
     This setting overrides the user setting of the storage owner.
     """
 
+    #: Respect the user setting of the storage owner (default behavior).
+    FOLLOW_USER_SETTING = 'FOLLOW_USER_SETTING'
     #: Only signed-in users with explicit access can read this storage.
     RESTRICTED = 'RESTRICTED'
     #: Anyone with a link or the unique storage ID can read this storage.
@@ -398,6 +400,8 @@ class RunGeneralAccess(str, Enum):
     This setting overrides the user setting of the run owner.
     """
 
+    #: Respect the user setting of the storage owner (default behavior).
+    FOLLOW_USER_SETTING = 'FOLLOW_USER_SETTING'
     #: Only signed-in users with explicit access can read this run.
     RESTRICTED = 'RESTRICTED'
     #: Anyone with a link or the unique run ID can read this run.
