@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 
 - Add FOLLOW_USER_SETTING to generalAccess enum ([#38](https://github.com/apify/apify-shared-python/pull/38)) ([15eb5e8](https://github.com/apify/apify-shared-python/commit/15eb5e8d3aae7c906282137e31c9aedcf279ddf3)) by [@tobice](https://github.com/tobice)
 
+### 🐛 Bug Fixes
+
+- Remove check-changelog pre-commit hook ([#39](https://github.com/apify/apify-shared-python/pull/39)) ([306c42c](https://github.com/apify/apify-shared-python/commit/306c42ca23553391ed148acc32df75f71de15b21)) by [@tobice](https://github.com/tobice)
+
 
 <!-- git-cliff-unreleased-end -->
 ## [1.4.0](https://github.com/apify/apify-shared-python/releases/tag/v1.4.0) (2025-04-11)
