@@ -2,8 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-<!-- git-cliff-unreleased-start -->
-## 1.5.0 - **not yet released**
+## [1.4.1](https://github.com/apify/apify-shared-python/releases/tag/v1.4.1) (2025-04-28)
 
 ### 🚀 Features
 
@@ -14,7 +13,6 @@ All notable changes to this project will be documented in this file.
 - Remove check-changelog pre-commit hook ([#39](https://github.com/apify/apify-shared-python/pull/39)) ([306c42c](https://github.com/apify/apify-shared-python/commit/306c42ca23553391ed148acc32df75f71de15b21)) by [@tobice](https://github.com/tobice)
 
 
-<!-- git-cliff-unreleased-end -->
 ## [1.4.0](https://github.com/apify/apify-shared-python/releases/tag/v1.4.0) (2025-04-11)
 
 ### 🚀 Features
