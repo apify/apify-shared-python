@@ -31,8 +31,6 @@ jobs:
   run_code_checks:
     name: Run code checks
     uses: ./.github/workflows/run_code_checks.yaml
-    with:
-      python-versions: '["3.10", "3.11", "3.12", "3.13"]'
 
   update_changelog:
     name: Update changelog
