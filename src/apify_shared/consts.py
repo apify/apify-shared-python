@@ -171,6 +171,8 @@ class ApifyEnvVars(str, Enum):
     TOKEN = 'APIFY_TOKEN'
     #: USER_ID
     USER_ID = 'APIFY_USER_ID'
+    #: USER_IS_PAYING
+    USER_IS_PAYING = 'APIFY_USER_IS_PAYING'
     #: WORKFLOW_KEY
     WORKFLOW_KEY = 'APIFY_WORKFLOW_KEY'
 
@@ -307,6 +309,7 @@ BOOL_ENV_VARS_TYPE = Literal[
     ApifyEnvVars.IS_AT_HOME,
     ApifyEnvVars.PERSIST_STORAGE,
     ApifyEnvVars.PURGE_ON_START,
+    ApifyEnvVars.USER_IS_PAYING,
 ]
 
 BOOL_ENV_VARS: list[BOOL_ENV_VARS_TYPE] = list(get_args(BOOL_ENV_VARS_TYPE))
