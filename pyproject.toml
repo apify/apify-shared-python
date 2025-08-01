@@ -1,6 +1,6 @@
 [project]
 name = "apify_shared"
-version = "1.4.1"
+version = "1.4.2"
 description = "Tools and constants shared across Apify projects."
 readme = "README.md"
 license = { text = "Apache Software License" }

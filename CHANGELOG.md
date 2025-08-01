@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.2](https://github.com/apify/apify-shared-python/releases/tag/v1.4.2) (2025-08-01)
+
+
 ## [1.4.1](https://github.com/apify/apify-shared-python/releases/tag/v1.4.1) (2025-08-01)
 
 
