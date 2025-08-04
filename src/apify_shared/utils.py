@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import base64
 import contextlib
 import hashlib
 import hmac
@@ -7,6 +8,7 @@ import io
 import json
 import re
 import string
+import time
 from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, TypeVar, cast
@@ -153,3 +155,24 @@ def create_hmac_signature(secret_key: str, message: str) -> str:
     decimal_signature = int(signature, 16)
 
     return encode_base62(decimal_signature)
+
+
+def create_storage_content_signature(
+    resource_id: str, url_signing_secret_key: str, expires_in_millis: int | None = None, version: int = 0
+) -> str:
+    """Create a secure signature for a resource like a dataset or key-value store.
+
+    This signature is used to generate a signed URL for authenticated access, which can be expiring or permanent.
+    The signature is created using HMAC with the provided secret key and includes
+    the resource ID, expiration time, and version.
+
+    Note: expires_in_millis is optional. If not provided, the signature will not expire.
+
+    """
+    expires_at = int(time.time() * 1000) + expires_in_millis if expires_in_millis else 0
+
+    message_to_sign = f'{version}.{expires_at}.{resource_id}'
+    hmac = create_hmac_signature(url_signing_secret_key, message_to_sign)
+
+    base64url_encoded_payload = base64.urlsafe_b64encode(f'{version}.{expires_at}.{hmac}'.encode())
+    return base64url_encoded_payload.decode('utf-8')
