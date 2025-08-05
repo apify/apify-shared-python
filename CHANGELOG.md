@@ -2,15 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-<!-- git-cliff-unreleased-start -->
-## 1.4.3 - **not yet released**
+## [1.5.0](https://github.com/apify/apify-shared-python/releases/tag/v1.5.0) (2025-08-05)
 
 ### 🚀 Features
 
 - Add create_hmac_signature and create_storage_content_signature ([#44](https://github.com/apify/apify-shared-python/pull/44)) ([70d146f](https://github.com/apify/apify-shared-python/commit/70d146f933adcf2cbe2f224c07efa603fb7ae77a)) by [@danpoletaev](https://github.com/danpoletaev)
 
 
-<!-- git-cliff-unreleased-end -->
 ## [1.4.1](https://github.com/apify/apify-shared-python/releases/tag/v1.4.1) (2025-04-28)
 
 ### 🚀 Features
