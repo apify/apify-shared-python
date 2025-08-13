@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+<!-- git-cliff-unreleased-start -->
+## 1.5.1 - **not yet released**
+
+### Chore
+
+- [**breaking**] Drop support for Python 3.8 ([#45](https://github.com/apify/apify-shared-python/pull/45)) ([bb0a9fa](https://github.com/apify/apify-shared-python/commit/bb0a9faabf30e5259066a8e35b93941b2ebfbfea)) by [@vdusek](https://github.com/vdusek)
+
+
+<!-- git-cliff-unreleased-end -->
 ## [1.5.0](https://github.com/apify/apify-shared-python/releases/tag/v1.5.0) (2025-08-05)
 
 ### 🚀 Features
