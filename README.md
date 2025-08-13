@@ -9,7 +9,7 @@ check out the [Apify SDK for Python](https://docs.apify.com/sdk/python) instead.
 
 ## Installation
 
-Requires Python 3.9+
+Requires Python 3.10+
 
 You can install the package from its [PyPI listing](https://pypi.org/project/apify-shared).
 To do that, simply run `pip install apify-shared` in your terminal.

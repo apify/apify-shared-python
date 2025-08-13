@@ -78,7 +78,7 @@ def is_file_or_bytes(value: Any) -> bool:
     but then the check would be super complex, judging from how the 'requests' library does it.
     This way should be good enough for the vast majority of use cases, if it causes issues, we can improve it later.
     """
-    return isinstance(value, (bytes, bytearray, io.IOBase))
+    return isinstance(value, (bytes | bytearray | io.IOBase))
 
 
 @ignore_docs

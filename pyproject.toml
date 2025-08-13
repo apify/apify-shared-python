@@ -9,17 +9,18 @@ keywords = ["apify", "api", "shared", "scraping", "automation"]
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Libraries",
 ]
 
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 # We use inclusive ordered comparison clause for non-Apify packages intentionally in order to enhance the Apify
 # packages's compatibility with a wide range of external packages. This decision was discussed in detail in
