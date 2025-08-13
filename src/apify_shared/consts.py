@@ -256,59 +256,6 @@ class ApifyEnvVars(str, Enum):
     WORKFLOW_KEY = 'APIFY_WORKFLOW_KEY'
     """Unique identifier for grouping related Actor runs and API operations together."""
 
-    # Replaced by ActorEnvVars, kept for backward compatibility:
-    ACTOR_BUILD_ID = 'APIFY_ACTOR_BUILD_ID'
-    """Deprecated: Use ActorEnvVars.BUILD_ID instead."""
-
-    ACTOR_BUILD_NUMBER = 'APIFY_ACTOR_BUILD_NUMBER'
-    """Deprecated: Use ActorEnvVars.BUILD_NUMBER instead."""
-
-    ACTOR_EVENTS_WS_URL = 'APIFY_ACTOR_EVENTS_WS_URL'
-    """Deprecated: Use ActorEnvVars.EVENTS_WEBSOCKET_URL instead."""
-
-    ACTOR_ID = 'APIFY_ACTOR_ID'
-    """Deprecated: Use ActorEnvVars.ID instead."""
-
-    ACTOR_RUN_ID = 'APIFY_ACTOR_RUN_ID'
-    """Deprecated: Use ActorEnvVars.RUN_ID instead."""
-
-    ACTOR_TASK_ID = 'APIFY_ACTOR_TASK_ID'
-    """Deprecated: Use ActorEnvVars.TASK_ID instead."""
-
-    CONTAINER_PORT = 'APIFY_CONTAINER_PORT'
-    """TCP port for the Actor's web server (deprecated name for WEB_SERVER_PORT)."""
-
-    CONTAINER_URL = 'APIFY_CONTAINER_URL'
-    """URL for accessing the Actor's web server (deprecated name for WEB_SERVER_URL)."""
-
-    DEFAULT_DATASET_ID = 'APIFY_DEFAULT_DATASET_ID'
-    """Deprecated: Use ActorEnvVars.DEFAULT_DATASET_ID instead."""
-
-    DEFAULT_KEY_VALUE_STORE_ID = 'APIFY_DEFAULT_KEY_VALUE_STORE_ID'
-    """Deprecated: Use ActorEnvVars.DEFAULT_KEY_VALUE_STORE_ID instead."""
-
-    DEFAULT_REQUEST_QUEUE_ID = 'APIFY_DEFAULT_REQUEST_QUEUE_ID'
-    """Deprecated: Use ActorEnvVars.DEFAULT_REQUEST_QUEUE_ID instead."""
-
-    INPUT_KEY = 'APIFY_INPUT_KEY'
-    """Deprecated: Use ActorEnvVars.INPUT_KEY instead."""
-
-    MEMORY_MBYTES = 'APIFY_MEMORY_MBYTES'
-    """Deprecated: Use ActorEnvVars.MEMORY_MBYTES instead."""
-
-    STARTED_AT = 'APIFY_STARTED_AT'
-    """Deprecated: Use ActorEnvVars.STARTED_AT instead."""
-
-    TIMEOUT_AT = 'APIFY_TIMEOUT_AT'
-    """Deprecated: Use ActorEnvVars.TIMEOUT_AT instead."""
-
-    # Deprecated, kept for backward compatibility:
-    ACT_ID = 'APIFY_ACT_ID'
-    """Deprecated: Old name for Actor ID."""
-
-    ACT_RUN_ID = 'APIFY_ACT_RUN_ID'
-    """Deprecated: Old name for Actor run ID."""
-
 
 class ActorExitCodes(int, Enum):
     """Standard exit codes used by Actors to indicate run completion status.
@@ -439,10 +386,8 @@ INTEGER_ENV_VARS_TYPE = Literal[
     ActorEnvVars.STANDBY_PORT,
     ActorEnvVars.WEB_SERVER_PORT,
     # Apify env vars
-    ApifyEnvVars.CONTAINER_PORT,
     ApifyEnvVars.DEDICATED_CPUS,
     ApifyEnvVars.LOG_LEVEL,
-    ApifyEnvVars.MEMORY_MBYTES,
     ApifyEnvVars.METAMORPH_AFTER_SLEEP_MILLIS,
     ApifyEnvVars.PERSIST_STATE_INTERVAL_MILLIS,
     ApifyEnvVars.PROXY_PORT,
@@ -452,7 +397,9 @@ INTEGER_ENV_VARS_TYPE = Literal[
 INTEGER_ENV_VARS: list[INTEGER_ENV_VARS_TYPE] = list(get_args(INTEGER_ENV_VARS_TYPE))
 
 FLOAT_ENV_VARS_TYPE = Literal[
+    # Actor env vars
     ActorEnvVars.MAX_TOTAL_CHARGE_USD,
+    # Apify env vars
     ApifyEnvVars.MAX_USED_CPU_RATIO,
 ]
 
@@ -471,12 +418,8 @@ BOOL_ENV_VARS_TYPE = Literal[
 BOOL_ENV_VARS: list[BOOL_ENV_VARS_TYPE] = list(get_args(BOOL_ENV_VARS_TYPE))
 
 DATETIME_ENV_VARS_TYPE = Literal[
-    # Actor env vars
     ActorEnvVars.STARTED_AT,
     ActorEnvVars.TIMEOUT_AT,
-    # Apify env vars
-    ApifyEnvVars.STARTED_AT,
-    ApifyEnvVars.TIMEOUT_AT,
 ]
 
 DATETIME_ENV_VARS: list[DATETIME_ENV_VARS_TYPE] = list(get_args(DATETIME_ENV_VARS_TYPE))
@@ -497,23 +440,10 @@ STRING_ENV_VARS_TYPE = Literal[
     ActorEnvVars.TASK_ID,
     ActorEnvVars.WEB_SERVER_URL,
     # Apify env vars
-    ApifyEnvVars.ACT_ID,
-    ApifyEnvVars.ACT_RUN_ID,
-    ApifyEnvVars.ACTOR_BUILD_ID,
-    ApifyEnvVars.ACTOR_BUILD_NUMBER,
-    ApifyEnvVars.ACTOR_EVENTS_WS_URL,
-    ApifyEnvVars.ACTOR_ID,
-    ApifyEnvVars.ACTOR_RUN_ID,
-    ApifyEnvVars.ACTOR_TASK_ID,
     ApifyEnvVars.API_BASE_URL,
     ApifyEnvVars.API_PUBLIC_BASE_URL,
-    ApifyEnvVars.CONTAINER_URL,
     ApifyEnvVars.DEFAULT_BROWSER_PATH,
-    ApifyEnvVars.DEFAULT_DATASET_ID,
-    ApifyEnvVars.DEFAULT_KEY_VALUE_STORE_ID,
-    ApifyEnvVars.DEFAULT_REQUEST_QUEUE_ID,
     ApifyEnvVars.FACT,
-    ApifyEnvVars.INPUT_KEY,
     ApifyEnvVars.INPUT_SECRETS_PRIVATE_KEY_FILE,
     ApifyEnvVars.INPUT_SECRETS_PRIVATE_KEY_PASSPHRASE,
     ApifyEnvVars.LOCAL_STORAGE_DIR,
