@@ -2,8 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-<!-- git-cliff-unreleased-start -->
-## 1.5.1 - **not yet released**
+## [2.0.0](https://github.com/apify/apify-shared-python/releases/tag/v2.0.0) (2025-08-13)
 
 ### Chore
 
@@ -13,9 +12,9 @@ All notable changes to this project will be documented in this file.
 ### Refactor
 
 - [**breaking**] Remove unused code from models, types, and utils ([#43](https://github.com/apify/apify-shared-python/pull/43)) ([ea02f2c](https://github.com/apify/apify-shared-python/commit/ea02f2c818bb7c365c56529146bf021b5b2575f5)) by [@vdusek](https://github.com/vdusek)
+- [**breaking**] Remove deprecated enum values ([#48](https://github.com/apify/apify-shared-python/pull/48)) ([1d24989](https://github.com/apify/apify-shared-python/commit/1d249897fa9a5a4c608f797925e82a9c679a430b)) by [@vdusek](https://github.com/vdusek)
 
 
-<!-- git-cliff-unreleased-end -->
 ## [1.5.0](https://github.com/apify/apify-shared-python/releases/tag/v1.5.0) (2025-08-05)
 
 ### 🚀 Features
