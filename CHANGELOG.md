@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 ### Chore
 
 - [**breaking**] Drop support for Python 3.8 ([#45](https://github.com/apify/apify-shared-python/pull/45)) ([bb0a9fa](https://github.com/apify/apify-shared-python/commit/bb0a9faabf30e5259066a8e35b93941b2ebfbfea)) by [@vdusek](https://github.com/vdusek)
+- [**breaking**] Drop support for Python 3.9 ([#46](https://github.com/apify/apify-shared-python/pull/46)) ([7372fd6](https://github.com/apify/apify-shared-python/commit/7372fd640fe64831f24e254c7c84592d43922c48)) by [@vdusek](https://github.com/vdusek)
 
 
 <!-- git-cliff-unreleased-end -->
