@@ -5,28 +5,39 @@ from typing import Literal, get_args
 
 
 class ActorJobStatus(str, Enum):
-    """Available statuses for actor jobs (runs or builds)."""
+    """Available statuses for Actor jobs (runs or builds).
 
-    #: Actor job initialized but not started yet
+    These statuses represent the lifecycle of an Actor execution,
+    from initialization to completion or termination.
+    """
+
     READY = 'READY'
-    #: Actor job in progress
+    """Actor job has been initialized but not yet started."""
+
     RUNNING = 'RUNNING'
-    #: Actor job finished successfully
+    """Actor job is currently executing."""
+
     SUCCEEDED = 'SUCCEEDED'
-    #: Actor job or build failed
+    """Actor job completed successfully without errors."""
+
     FAILED = 'FAILED'
-    #: Actor job currently timing out
+    """Actor job or build failed due to an error or exception."""
+
     TIMING_OUT = 'TIMING-OUT'
-    #: Actor job timed out
+    """Actor job is currently in the process of timing out."""
+
     TIMED_OUT = 'TIMED-OUT'
-    #: Actor job currently being aborted by user
+    """Actor job was terminated due to timeout."""
+
     ABORTING = 'ABORTING'
-    #: Actor job aborted by user
+    """Actor job is currently being aborted by user request."""
+
     ABORTED = 'ABORTED'
+    """Actor job was successfully aborted by user request."""
 
     @property
     def is_terminal(self: ActorJobStatus) -> bool:
-        """Whether this actor job status is terminal."""
+        """Whether this Actor job status is terminal."""
         return self in (
             ActorJobStatus.SUCCEEDED,
             ActorJobStatus.FAILED,
@@ -36,244 +47,389 @@ class ActorJobStatus(str, Enum):
 
 
 class ActorSourceType(str, Enum):
-    """Available source types for actors."""
+    """Available source code types for Actors.
 
-    #: Actor source code is comprised of multiple files
+    Defines how Actor source code is stored and accessed
+    for building and executing Actors on the platform.
+    """
+
     SOURCE_FILES = 'SOURCE_FILES'
-    #: Actor source code is cloned from a Git repository
+    """Actor source code consists of multiple individual files uploaded directly."""
+
     GIT_REPO = 'GIT_REPO'
-    #: Actor source code is downloaded using a tarball or Zip file
+    """Actor source code is cloned from a Git repository (GitHub, GitLab, etc.)."""
+
     TARBALL = 'TARBALL'
-    #: Actor source code is taken from a GitHub Gist
+    """Actor source code is downloaded from a tarball or ZIP archive."""
+
     GITHUB_GIST = 'GITHUB_GIST'
+    """Actor source code is retrieved from a GitHub Gist."""
 
 
 class ActorEventTypes(str, Enum):
-    """Possible values of actor event type."""
+    """Event types that can be sent to Actors during execution.
 
-    #: Info about resource usage of the actor
+    These events provide real-time information about system state
+    and lifecycle changes that Actors can respond to.
+    """
+
     SYSTEM_INFO = 'systemInfo'
-    #: Sent when the actor is about to migrate
+    """Information about resource usage and system metrics of the Actor."""
+
     MIGRATING = 'migrating'
-    #: Sent when the actor should persist its state (every minute or when migrating)
+    """Notification that the Actor is about to be migrated to another server."""
+
     PERSIST_STATE = 'persistState'
-    #: Sent when the actor is aborting
+    """Signal to persist Actor state - sent every minute or before migration."""
+
     ABORTING = 'aborting'
+    """Notification that the Actor is being terminated and should clean up."""
 
 
 class ActorEnvVars(str, Enum):
-    """Possible Apify-specific environment variables prefixed with "ACTOR_"."""
+    """Environment variables with ACTOR_ prefix set by the Apify platform.
 
-    # TODO: document these  # noqa: TD003
+    These variables provide essential context about the current Actor run,
+    including identifiers, resource limits, and configuration details.
+    All variables are automatically set by the platform during Actor execution.
+    """
 
-    #: BUILD_ID
     BUILD_ID = 'ACTOR_BUILD_ID'
-    #: BUILD_NUMBER
+    """Unique identifier of the Actor build used for this run."""
+
     BUILD_NUMBER = 'ACTOR_BUILD_NUMBER'
-    #: BUILD_TAGS
+    """Sequential build number of the Actor build used for this run."""
+
     BUILD_TAGS = 'ACTOR_BUILD_TAGS'
-    #: DEFAULT_DATASET_ID
+    """Comma-separated list of tags associated with the Actor build."""
+
     DEFAULT_DATASET_ID = 'ACTOR_DEFAULT_DATASET_ID'
-    #: DEFAULT_KEY_VALUE_STORE_ID
+    """Unique identifier of the default dataset for storing Actor results."""
+
     DEFAULT_KEY_VALUE_STORE_ID = 'ACTOR_DEFAULT_KEY_VALUE_STORE_ID'
-    #: DEFAULT_REQUEST_QUEUE_ID
+    """Unique identifier of the default key-value store for Actor data."""
+
     DEFAULT_REQUEST_QUEUE_ID = 'ACTOR_DEFAULT_REQUEST_QUEUE_ID'
-    #: EVENTS_WEBSOCKET_URL
+    """Unique identifier of the default request queue for Actor URLs."""
+
     EVENTS_WEBSOCKET_URL = 'ACTOR_EVENTS_WEBSOCKET_URL'
-    #: FULL_NAME
+    """WebSocket URL for receiving real-time events from the platform."""
+
     FULL_NAME = 'ACTOR_FULL_NAME'
-    #: ID
+    """Full Actor name in format 'username/actor-name' for identification."""
+
     ID = 'ACTOR_ID'
-    #: INPUT_KEY
+    """Unique identifier of the Actor definition."""
+
     INPUT_KEY = 'ACTOR_INPUT_KEY'
-    #: MAX_PAID_DATASET_ITEMS
+    """Key in the default key-value store where Actor input is stored (usually 'INPUT')."""
+
     MAX_PAID_DATASET_ITEMS = 'ACTOR_MAX_PAID_DATASET_ITEMS'
-    #: MAX_TOTAL_CHARGE_USD
+    """Maximum number of dataset items that will be charged for pay-per-result Actors."""
+
     MAX_TOTAL_CHARGE_USD = 'ACTOR_MAX_TOTAL_CHARGE_USD'
-    #: MEMORY_MBYTES
+    """Maximum total charge limit in USD for pay-per-event Actors."""
+
     MEMORY_MBYTES = 'ACTOR_MEMORY_MBYTES'
-    #: RUN_ID
+    """Amount of memory allocated to the Actor run in megabytes."""
+
     RUN_ID = 'ACTOR_RUN_ID'
-    #: STANDBY_PORT
+    """Unique identifier of this specific Actor run execution."""
+
     STANDBY_PORT = 'ACTOR_STANDBY_PORT'
-    #: STANDBY_URL
+    """TCP port number for Actor standby mode HTTP server."""
+
     STANDBY_URL = 'ACTOR_STANDBY_URL'
-    #: STARTED_AT
+    """Public URL for accessing the Actor in standby mode."""
+
     STARTED_AT = 'ACTOR_STARTED_AT'
-    #: TASK_ID
+    """ISO 8601 timestamp when the Actor run was started (UTC timezone)."""
+
     TASK_ID = 'ACTOR_TASK_ID'
-    #: TIMEOUT_AT
+    """Unique identifier of the Actor task (empty if run directly via API)."""
+
     TIMEOUT_AT = 'ACTOR_TIMEOUT_AT'
-    #: WEB_SERVER_PORT
+    """ISO 8601 timestamp when the Actor run will timeout (UTC timezone)."""
+
     WEB_SERVER_PORT = 'ACTOR_WEB_SERVER_PORT'
-    #: WEB_SERVER_URL
+    """TCP port number for the Actor's built-in HTTP web server."""
+
     WEB_SERVER_URL = 'ACTOR_WEB_SERVER_URL'
+    """Public URL for accessing the Actor's built-in HTTP web server."""
 
 
 class ApifyEnvVars(str, Enum):
-    """Possible Apify-specific environment variables prefixed with "APIFY_"."""
+    """Environment variables with APIFY_ prefix set by the Apify platform.
 
-    # TODO: document these  # noqa: TD003
+    These variables provide configuration, authentication, and platform-specific
+    settings for Actors running on the Apify platform. They control behavior
+    like logging, proxy settings, browser configuration, and platform integration.
+    """
 
-    #: API_BASE_URL
     API_BASE_URL = 'APIFY_API_BASE_URL'
-    #: API_PUBLIC_BASE_URL
+    """Base URL of the Apify API (typically 'https://api.apify.com')."""
+
     API_PUBLIC_BASE_URL = 'APIFY_API_PUBLIC_BASE_URL'
-    #: DEDICATED_CPUS
+    """Public URL of the Apify API accessible from external networks."""
+
     DEDICATED_CPUS = 'APIFY_DEDICATED_CPUS'
-    #: DEFAULT_BROWSER_PATH
+    """Number of dedicated CPU cores allocated to the Actor based on memory allocation."""
+
     DEFAULT_BROWSER_PATH = 'APIFY_DEFAULT_BROWSER_PATH'
-    #: DISABLE_BROWSER_SANDBOX
+    """File system path to the default browser executable for web scraping."""
+
     DISABLE_BROWSER_SANDBOX = 'APIFY_DISABLE_BROWSER_SANDBOX'
-    #: DISABLE_OUTDATED_WARNING
+    """Set to '1' to disable browser sandbox mode for compatibility with containerized environments."""
+
     DISABLE_OUTDATED_WARNING = 'APIFY_DISABLE_OUTDATED_WARNING'
-    #: FACT
+    """Set to '1' to suppress warnings about outdated SDK versions."""
+
     FACT = 'APIFY_FACT'
-    #: HEADLESS
+    """Fun fact about the Apify platform displayed during Actor startup."""
+
     HEADLESS = 'APIFY_HEADLESS'
-    #: INPUT_SECRETS_PRIVATE_KEY_FILE
+    """Set to '1' to run browsers in headless mode without graphical interface."""
+
     INPUT_SECRETS_PRIVATE_KEY_FILE = 'APIFY_INPUT_SECRETS_PRIVATE_KEY_FILE'
-    #: INPUT_SECRETS_PRIVATE_KEY_PASSPHRASE
+    """Path to the private key file used for decrypting secret input values."""
+
     INPUT_SECRETS_PRIVATE_KEY_PASSPHRASE = 'APIFY_INPUT_SECRETS_PRIVATE_KEY_PASSPHRASE'
-    #: IS_AT_HOME
+    """Passphrase for unlocking the private key file used for secret decryption."""
+
     IS_AT_HOME = 'APIFY_IS_AT_HOME'
-    #: LOCAL_STORAGE_DIR
+    """Set to '1' when the Actor is running on official Apify platform infrastructure."""
+
     LOCAL_STORAGE_DIR = 'APIFY_LOCAL_STORAGE_DIR'
-    #: LOG_FORMAT
+    """Local file system directory path where Actor data and storage is persisted."""
+
     LOG_FORMAT = 'APIFY_LOG_FORMAT'
-    #: LOG_LEVEL
+    """Logging output format: 'pretty' for human-readable, 'json' for structured logs."""
+
     LOG_LEVEL = 'APIFY_LOG_LEVEL'
-    #: MAX_USED_CPU_RATIO
+    """Minimum logging level: 'DEBUG', 'INFO', 'WARNING', 'ERROR' in ascending order."""
+
     MAX_USED_CPU_RATIO = 'APIFY_MAX_USED_CPU_RATIO'
-    #: META_ORIGIN
+    """Maximum CPU utilization ratio (0.0-1.0) that the Actor should not exceed."""
+
     META_ORIGIN = 'APIFY_META_ORIGIN'
-    #: METAMORPH_AFTER_SLEEP_MILLIS
+    """How the Actor run was initiated: 'WEB', 'API', 'SCHEDULER', 'TEST', etc."""
+
     METAMORPH_AFTER_SLEEP_MILLIS = 'APIFY_METAMORPH_AFTER_SLEEP_MILLIS'
-    #: PERSIST_STATE_INTERVAL_MILLIS
+    """Milliseconds to wait before Actor metamorphosis (transformation) occurs."""
+
     PERSIST_STATE_INTERVAL_MILLIS = 'APIFY_PERSIST_STATE_INTERVAL_MILLIS'
-    #: PERSIST_STORAGE
+    """Interval in milliseconds for automatic state persistence (default: 60000ms)."""
+
     PERSIST_STORAGE = 'APIFY_PERSIST_STORAGE'
-    #: PROXY_HOSTNAME
+    """Set to '1' to persist Actor storage data after run completion."""
+
     PROXY_HOSTNAME = 'APIFY_PROXY_HOSTNAME'
-    #: PROXY_PASSWORD
+    """Hostname for Apify Proxy service (typically 'proxy.apify.com')."""
+
     PROXY_PASSWORD = 'APIFY_PROXY_PASSWORD'
-    #: PROXY_PORT
+    """Authentication password for accessing Apify Proxy services."""
+
     PROXY_PORT = 'APIFY_PROXY_PORT'
-    #: PROXY_STATUS_URL
+    """TCP port number for connecting to Apify Proxy (typically 8000)."""
+
     PROXY_STATUS_URL = 'APIFY_PROXY_STATUS_URL'
-    #: PURGE_ON_START
+    """URL endpoint for retrieving Apify Proxy status and connection information."""
+
     PURGE_ON_START = 'APIFY_PURGE_ON_START'
-    #: SDK_LATEST_VERSION
+    """Set to '1' to clear all local storage before Actor execution begins."""
+
     SDK_LATEST_VERSION = 'APIFY_SDK_LATEST_VERSION'
-    #: SYSTEM_INFO_INTERVAL_MILLIS
+    """Latest available version of the Apify SDK for update notifications."""
+
     SYSTEM_INFO_INTERVAL_MILLIS = 'APIFY_SYSTEM_INFO_INTERVAL_MILLIS'
-    #: TOKEN
+    """Interval in milliseconds for sending system resource usage information."""
+
     TOKEN = 'APIFY_TOKEN'
-    #: USER_ID
+    """API authentication token of the user who initiated the Actor run."""
+
     USER_ID = 'APIFY_USER_ID'
-    #: USER_IS_PAYING
+    """Unique identifier of the user who started the Actor (may differ from Actor owner)."""
+
     USER_IS_PAYING = 'APIFY_USER_IS_PAYING'
-    #: WORKFLOW_KEY
+    """Set to '1' if the user who started the Actor has an active paid subscription."""
+
     WORKFLOW_KEY = 'APIFY_WORKFLOW_KEY'
+    """Unique identifier for grouping related Actor runs and API operations together."""
 
     # Replaced by ActorEnvVars, kept for backward compatibility:
-    #: ACTOR_BUILD_ID
     ACTOR_BUILD_ID = 'APIFY_ACTOR_BUILD_ID'
-    #: ACTOR_BUILD_NUMBER
+    """Deprecated: Use ActorEnvVars.BUILD_ID instead."""
+
     ACTOR_BUILD_NUMBER = 'APIFY_ACTOR_BUILD_NUMBER'
-    #: ACTOR_EVENTS_WS_URL
+    """Deprecated: Use ActorEnvVars.BUILD_NUMBER instead."""
+
     ACTOR_EVENTS_WS_URL = 'APIFY_ACTOR_EVENTS_WS_URL'
-    #: ACTOR_ID
+    """Deprecated: Use ActorEnvVars.EVENTS_WEBSOCKET_URL instead."""
+
     ACTOR_ID = 'APIFY_ACTOR_ID'
-    #: ACTOR_RUN_ID
+    """Deprecated: Use ActorEnvVars.ID instead."""
+
     ACTOR_RUN_ID = 'APIFY_ACTOR_RUN_ID'
-    #: ACTOR_TASK_ID
+    """Deprecated: Use ActorEnvVars.RUN_ID instead."""
+
     ACTOR_TASK_ID = 'APIFY_ACTOR_TASK_ID'
-    #: CONTAINER_PORT
+    """Deprecated: Use ActorEnvVars.TASK_ID instead."""
+
     CONTAINER_PORT = 'APIFY_CONTAINER_PORT'
-    #: CONTAINER_URL
+    """TCP port for the Actor's web server (deprecated name for WEB_SERVER_PORT)."""
+
     CONTAINER_URL = 'APIFY_CONTAINER_URL'
-    #: DEFAULT_DATASET_ID
+    """URL for accessing the Actor's web server (deprecated name for WEB_SERVER_URL)."""
+
     DEFAULT_DATASET_ID = 'APIFY_DEFAULT_DATASET_ID'
-    #: DEFAULT_KEY_VALUE_STORE_ID
+    """Deprecated: Use ActorEnvVars.DEFAULT_DATASET_ID instead."""
+
     DEFAULT_KEY_VALUE_STORE_ID = 'APIFY_DEFAULT_KEY_VALUE_STORE_ID'
-    #: DEFAULT_REQUEST_QUEUE_ID
+    """Deprecated: Use ActorEnvVars.DEFAULT_KEY_VALUE_STORE_ID instead."""
+
     DEFAULT_REQUEST_QUEUE_ID = 'APIFY_DEFAULT_REQUEST_QUEUE_ID'
-    #: INPUT_KEY
+    """Deprecated: Use ActorEnvVars.DEFAULT_REQUEST_QUEUE_ID instead."""
+
     INPUT_KEY = 'APIFY_INPUT_KEY'
-    #: MEMORY_MBYTES
+    """Deprecated: Use ActorEnvVars.INPUT_KEY instead."""
+
     MEMORY_MBYTES = 'APIFY_MEMORY_MBYTES'
-    #: STARTED_AT
+    """Deprecated: Use ActorEnvVars.MEMORY_MBYTES instead."""
+
     STARTED_AT = 'APIFY_STARTED_AT'
-    #: TIMEOUT_AT
+    """Deprecated: Use ActorEnvVars.STARTED_AT instead."""
+
     TIMEOUT_AT = 'APIFY_TIMEOUT_AT'
+    """Deprecated: Use ActorEnvVars.TIMEOUT_AT instead."""
 
     # Deprecated, kept for backward compatibility:
-    #: ACT_ID
     ACT_ID = 'APIFY_ACT_ID'
-    #: ACT_RUN_ID
+    """Deprecated: Old name for Actor ID."""
+
     ACT_RUN_ID = 'APIFY_ACT_RUN_ID'
+    """Deprecated: Old name for Actor run ID."""
 
 
 class ActorExitCodes(int, Enum):
-    """Usual actor exit codes."""
+    """Standard exit codes used by Actors to indicate run completion status.
 
-    #: The actor finished successfully
+    These codes follow Unix conventions where 0 indicates success
+    and non-zero values indicate various types of failures.
+    """
+
     SUCCESS = 0
+    """Actor completed successfully without any errors."""
 
-    #: The main function of the actor threw an Exception
     ERROR_USER_FUNCTION_THREW = 91
+    """Actor failed because the main function threw an unhandled exception."""
 
 
 class WebhookEventType(str, Enum):
-    """Events that can trigger a webhook."""
+    """Event types that can trigger webhook notifications.
 
-    #: The actor run was created
+    These events are sent to configured webhook URLs when specific
+    Actor run or build lifecycle events occur, enabling integration
+    with external systems and automated workflows.
+    """
+
     ACTOR_RUN_CREATED = 'ACTOR.RUN.CREATED'
-    #: The actor run has succeeded
-    ACTOR_RUN_SUCCEEDED = 'ACTOR.RUN.SUCCEEDED'
-    #: The actor run has failed
-    ACTOR_RUN_FAILED = 'ACTOR.RUN.FAILED'
-    #: The actor run has timed out
-    ACTOR_RUN_TIMED_OUT = 'ACTOR.RUN.TIMED_OUT'
-    #: The actor run was aborted
-    ACTOR_RUN_ABORTED = 'ACTOR.RUN.ABORTED'
-    #: The actor run was resurrected
-    ACTOR_RUN_RESURRECTED = 'ACTOR.RUN.RESURRECTED'
+    """Triggered when a new Actor run is created and initialized."""
 
-    #: The actor build was created
+    ACTOR_RUN_SUCCEEDED = 'ACTOR.RUN.SUCCEEDED'
+    """Triggered when an Actor run completes successfully."""
+
+    ACTOR_RUN_FAILED = 'ACTOR.RUN.FAILED'
+    """Triggered when an Actor run fails due to an error."""
+
+    ACTOR_RUN_TIMED_OUT = 'ACTOR.RUN.TIMED_OUT'
+    """Triggered when an Actor run is terminated due to timeout."""
+
+    ACTOR_RUN_ABORTED = 'ACTOR.RUN.ABORTED'
+    """Triggered when an Actor run is manually aborted by user."""
+
+    ACTOR_RUN_RESURRECTED = 'ACTOR.RUN.RESURRECTED'
+    """Triggered when a previously failed Actor run is automatically resurrected."""
+
     ACTOR_BUILD_CREATED = 'ACTOR.BUILD.CREATED'
-    #: The actor build has succeeded
+    """Triggered when a new Actor build process is initiated."""
+
     ACTOR_BUILD_SUCCEEDED = 'ACTOR.BUILD.SUCCEEDED'
-    #: The actor build has failed
+    """Triggered when an Actor build completes successfully."""
+
     ACTOR_BUILD_FAILED = 'ACTOR.BUILD.FAILED'
-    #: The actor build has timed out
+    """Triggered when an Actor build fails due to compilation or setup errors."""
+
     ACTOR_BUILD_TIMED_OUT = 'ACTOR.BUILD.TIMED_OUT'
-    #: The actor build was aborted
+    """Triggered when an Actor build process exceeds the time limit."""
+
     ACTOR_BUILD_ABORTED = 'ACTOR.BUILD.ABORTED'
+    """Triggered when an Actor build is manually cancelled by user."""
 
 
 class MetaOrigin(str, Enum):
-    """Possible origins for actor runs, i.e. how were the jobs started."""
+    """Origins indicating how Actor runs were initiated.
 
-    #: Job started from Developer console in Source section of actor
+    This information helps track and analyze how Actors are being used
+    across different interfaces and automation systems on the platform.
+    """
+
     DEVELOPMENT = 'DEVELOPMENT'
-    #: Job started from other place on the website (either console or task detail page)
+    """Actor run started from the Developer Console source code section."""
+
     WEB = 'WEB'
-    #: Job started through API
+    """Actor run initiated through the Apify Console web interface."""
+
     API = 'API'
-    #: Job started through Scheduler
+    """Actor run started programmatically via the Apify API."""
+
     SCHEDULER = 'SCHEDULER'
-    #: Job started through test actor page
+    """Actor run triggered automatically by a scheduled task."""
+
     TEST = 'TEST'
-    #: Job started by the webhook
+    """Actor run initiated from the test/try functionality in Console."""
+
     WEBHOOK = 'WEBHOOK'
-    #: Job started by another actor run
+    """Actor run triggered by an incoming webhook request."""
+
     ACTOR = 'ACTOR'
-    #: Job started via Actor standby
+    """Actor run started by another Actor during its execution."""
+
     STANDBY = 'STANDBY'
-    #: Job started via Apify CLI
+    """Actor run initiated through the Actor Standby mode."""
+
     CLI = 'CLI'
+    """Actor run started using the Apify command-line interface."""
+
+
+class StorageGeneralAccess(str, Enum):
+    """Access levels for Apify storage resources (key-value stores, datasets, request queues).
+
+    These access levels control who can interact with storage resources and how,
+    providing fine-grained security for shared data and collaboration scenarios.
+    """
+
+    RESTRICTED = 'RESTRICTED'
+    """Access limited to the resource owner and explicitly granted users or organizations."""
+
+    PUBLIC_READ = 'PUBLIC_READ'
+    """Resource data can be read by anyone, but only the owner can modify it."""
+
+    PUBLIC_WRITE = 'PUBLIC_WRITE'
+    """Full public access - anyone can read, write, and modify the resource."""
+
+
+class RunGeneralAccess(str, Enum):
+    """Access levels for Actor runs and their associated data.
+
+    These settings control who can view Actor run details, including logs,
+    outputs, and metadata, enabling secure sharing of execution results.
+    """
+
+    RESTRICTED = 'RESTRICTED'
+    """Access limited to the Actor owner and explicitly authorized users."""
+
+    PUBLIC_READ = 'PUBLIC_READ'
+    """Run details and outputs are publicly visible but cannot be modified by others."""
 
 
 INTEGER_ENV_VARS_TYPE = Literal[
@@ -379,33 +535,3 @@ COMMA_SEPARATED_LIST_ENV_VARS_TYPE = Literal[ActorEnvVars.BUILD_TAGS,]
 COMMA_SEPARATED_LIST_ENV_VARS: list[COMMA_SEPARATED_LIST_ENV_VARS_TYPE] = list(
     get_args(COMMA_SEPARATED_LIST_ENV_VARS_TYPE)
 )
-
-
-class StorageGeneralAccess(str, Enum):
-    """Storage setting determining how others can access the storage.
-
-    This setting overrides the user setting of the storage owner.
-    """
-
-    #: Respect the user setting of the storage owner (default behavior).
-    FOLLOW_USER_SETTING = 'FOLLOW_USER_SETTING'
-    #: Only signed-in users with explicit access can read this storage.
-    RESTRICTED = 'RESTRICTED'
-    #: Anyone with a link or the unique storage ID can read this storage.
-    ANYONE_WITH_ID_CAN_READ = 'ANYONE_WITH_ID_CAN_READ'
-    #: Anyone with a link, ID, or storage name can read this storage.
-    ANYONE_WITH_NAME_CAN_READ = 'ANYONE_WITH_NAME_CAN_READ'
-
-
-class RunGeneralAccess(str, Enum):
-    """Run setting determining how others can access the run.
-
-    This setting overrides the user setting of the run owner.
-    """
-
-    #: Respect the user setting of the storage owner (default behavior).
-    FOLLOW_USER_SETTING = 'FOLLOW_USER_SETTING'
-    #: Only signed-in users with explicit access can read this run.
-    RESTRICTED = 'RESTRICTED'
-    #: Anyone with a link or the unique run ID can read this run.
-    ANYONE_WITH_ID_CAN_READ = 'ANYONE_WITH_ID_CAN_READ'
