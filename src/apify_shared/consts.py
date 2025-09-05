@@ -397,6 +397,7 @@ class ActorPermissionLevel(str, Enum):
         - storages provided via input
         - the current run
         - ...
+
     Broadly speaking, limited permission Actors cannot access any account data not related to the current run.
     For details refer to the Apify documentation.
     """
