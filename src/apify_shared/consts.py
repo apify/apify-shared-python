@@ -388,8 +388,8 @@ class ActorPermissionLevel(str, Enum):
     Warning: Make sure you know what you are doing when changing this value!
     """
 
-    #: Full permission Actors have access to all user data in the account.
     FULL_PERMISSIONS = 'FULL_PERMISSIONS'
+    """Full permission Actors have access to all user data in the account."""
 
     #: Limited permission Actors have access only to specific resources:
     #: - default storages
