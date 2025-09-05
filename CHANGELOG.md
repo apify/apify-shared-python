@@ -2,15 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-<!-- git-cliff-unreleased-start -->
-## 2.0.1 - **not yet released**
+## [2.1.0](https://github.com/apify/apify-shared-python/releases/tag/v2.1.0) (2025-09-05)
 
 ### 🚀 Features
 
 - Add ActorPermissionLevel enum ([#51](https://github.com/apify/apify-shared-python/pull/51)) ([52a1f73](https://github.com/apify/apify-shared-python/commit/52a1f73e2d2b2f988820562aa03785f255aa0cc7)) by [@tobice](https://github.com/tobice)
 
 
-<!-- git-cliff-unreleased-end -->
 ## [2.0.0](https://github.com/apify/apify-shared-python/releases/tag/v2.0.0) (2025-08-13)
 
 ### Chore
