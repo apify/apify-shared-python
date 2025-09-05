@@ -379,6 +379,30 @@ class RunGeneralAccess(str, Enum):
     """Run details and outputs are publicly visible but cannot be modified by others."""
 
 
+class ActorPermissionLevel(str, Enum):
+    """Determines permissions that the Actor is granted when running.
+
+    Based on this value, the Apify platform generates a scoped run token with a corresponding permission scope and
+    injects it into the Actor runtime.
+
+    Warning: Make sure you know what you are doing when changing this value!
+    """
+
+    FULL_PERMISSIONS = 'FULL_PERMISSIONS'
+    """Full permission Actors have access to all user data in the account."""
+
+    LIMITED_PERMISSIONS = 'LIMITED_PERMISSIONS'
+    """Limited permission Actors have access only to specific resources:
+        - default storages
+        - storages provided via input
+        - the current run
+        - ...
+
+    Broadly speaking, limited permission Actors cannot access any account data not related to the current run.
+    For details refer to the Apify documentation.
+    """
+
+
 INTEGER_ENV_VARS_TYPE = Literal[
     # Actor env vars
     ActorEnvVars.MAX_PAID_DATASET_ITEMS,
