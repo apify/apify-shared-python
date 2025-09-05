@@ -391,15 +391,15 @@ class ActorPermissionLevel(str, Enum):
     FULL_PERMISSIONS = 'FULL_PERMISSIONS'
     """Full permission Actors have access to all user data in the account."""
 
-    #: Limited permission Actors have access only to specific resources:
-    #: - default storages
-    #: - storages provided via input
-    #: - the current run
-    #: - ...
-    #:
-    #: Broadly speaking, limited permission Actors cannot access any account data not related to the current run.
-    #: For details refer to the Apify documentation.
     LIMITED_PERMISSIONS = 'LIMITED_PERMISSIONS'
+    """Limited permission Actors have access only to specific resources:
+        - default storages
+        - storages provided via input
+        - the current run
+        - ...
+    Broadly speaking, limited permission Actors cannot access any account data not related to the current run.
+    For details refer to the Apify documentation.
+    """
 
 
 INTEGER_ENV_VARS_TYPE = Literal[
