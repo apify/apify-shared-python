@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "apify_shared"
-version = "2.1.0"
+version = "2.1.1"
 description = "Tools and constants shared across Apify projects."
 authors = [{ name = "Apify Technologies s.r.o.", email = "support@apify.com" }]
 license = { file = "LICENSE" }

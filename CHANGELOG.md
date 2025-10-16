@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+<!-- git-cliff-unreleased-start -->
+## 2.1.1 - **not yet released**
+
+### 🚀 Features
+
+- **consts:** Add actor permission level env var ([#52](https://github.com/apify/apify-shared-python/pull/52)) ([43b9e81](https://github.com/apify/apify-shared-python/commit/43b9e819fae71ac73afa40d406be4d1871dc9960)) by [@stepskop](https://github.com/stepskop)
+
+
+<!-- git-cliff-unreleased-end -->
 ## [2.1.0](https://github.com/apify/apify-shared-python/releases/tag/v2.1.0) (2025-09-05)
 
 ### 🚀 Features
