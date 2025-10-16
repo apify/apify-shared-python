@@ -133,6 +133,9 @@ class ActorEnvVars(str, Enum):
     MEMORY_MBYTES = 'ACTOR_MEMORY_MBYTES'
     """Amount of memory allocated to the Actor run in megabytes."""
 
+    PERMISSION_LEVEL = 'ACTOR_PERMISSION_LEVEL'
+    """Permission level of the Actor."""
+
     RUN_ID = 'ACTOR_RUN_ID'
     """Unique identifier of this specific Actor run execution."""
 
@@ -459,6 +462,7 @@ STRING_ENV_VARS_TYPE = Literal[
     ActorEnvVars.FULL_NAME,
     ActorEnvVars.ID,
     ActorEnvVars.INPUT_KEY,
+    ActorEnvVars.PERMISSION_LEVEL,
     ActorEnvVars.RUN_ID,
     ActorEnvVars.STANDBY_URL,
     ActorEnvVars.TASK_ID,
