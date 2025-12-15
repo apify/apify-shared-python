@@ -1,7 +1,7 @@
-name: Create a release
+name: Stable release
 
 on:
-  # Trigger a stable version release via GitHub's UI, with the ability to specify the type of release.
+  # Runs when manually triggered from the GitHub UI, with options to specify the type of release.
   workflow_dispatch:
     inputs:
       release_type:
@@ -21,9 +21,22 @@ on:
         type: string
         default: ""
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
+  code_checks:
+    name: Code checks
+    uses: ./.github/workflows/_check_code.yaml
+
+  tests:
+    name: Tests
+    uses: ./.github/workflows/_tests.yaml
+
   release_metadata:
     name: Prepare release metadata
+    needs: [code_checks, tests]
     runs-on: ubuntu-latest
     outputs:
       version_number: ${{ steps.release_metadata.outputs.version_number }}
@@ -39,13 +52,9 @@ jobs:
           custom_version: ${{ inputs.custom_version }}
           existing_changelog_path: CHANGELOG.md
 
-  run_code_checks:
-    name: Run code checks
-    uses: ./.github/workflows/code_checks.yaml
-
   update_changelog:
     name: Update changelog
-    needs: [release_metadata, run_code_checks]
+    needs: [release_metadata]
     uses: apify/workflows/.github/workflows/python_bump_and_update_changelog.yaml@main
     with:
       version_number: ${{ needs.release_metadata.outputs.version_number }}
@@ -54,7 +63,7 @@ jobs:
       APIFY_SERVICE_ACCOUNT_GITHUB_TOKEN: ${{ secrets.APIFY_SERVICE_ACCOUNT_GITHUB_TOKEN }}
 
   create_github_release:
-    name: Create github release
+    name: Create GitHub release
     needs: [release_metadata, update_changelog]
     runs-on: ubuntu-latest
     env:
@@ -89,3 +98,6 @@ jobs:
       # Publishes the package to PyPI using PyPA official GitHub action with OIDC authentication.
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+
+      # TODO: add job for publish package to Conda
+      # https://github.com/apify/crawlee-python/issues/104
