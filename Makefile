@@ -2,7 +2,7 @@
 	type-check check-code format
 
 clean:
-	rm -rf .mypy_cache .pytest_cache .ruff_cache build dist htmlcov .coverage
+	rm -rf .ty_cache .pytest_cache .ruff_cache build dist htmlcov .coverage
 
 install-dev:
 	uv sync --all-extras
@@ -25,7 +25,7 @@ unit-tests-cov:
 	uv run pytest --numprocesses=auto --verbose --cov=src/apify_shared --cov-report=html tests/unit
 
 type-check:
-	uv run mypy
+	uv run ty check
 
 # The check-code target runs a series of checks equivalent to those performed by pre-commit hooks
 # and the run_checks.yaml GitHub Actions workflow.
