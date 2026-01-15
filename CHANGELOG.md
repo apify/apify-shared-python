@@ -2,8 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-<!-- git-cliff-unreleased-start -->
-## 2.1.1 - **not yet released**
+## [2.2.0](https://github.com/apify/apify-shared-python/releases/tag/v2.2.0) (2026-01-15)
 
 ### 🚀 Features
 
@@ -14,7 +13,6 @@ All notable changes to this project will be documented in this file.
 - Fix StorageGeneralAccess and RunGeneralAccess enums ([#56](https://github.com/apify/apify-shared-python/pull/56)) ([be624ef](https://github.com/apify/apify-shared-python/commit/be624ef2b29bd393d9148012e6b4559f72242890)) by [@vdusek](https://github.com/vdusek)
 
 
-<!-- git-cliff-unreleased-end -->
 ## [2.1.0](https://github.com/apify/apify-shared-python/releases/tag/v2.1.0) (2025-09-05)
 
 ### 🚀 Features
