@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 
 - **consts:** Add actor permission level env var ([#52](https://github.com/apify/apify-shared-python/pull/52)) ([43b9e81](https://github.com/apify/apify-shared-python/commit/43b9e819fae71ac73afa40d406be4d1871dc9960)) by [@stepskop](https://github.com/stepskop)
 
+### 🐛 Bug Fixes
+
+- Fix StorageGeneralAccess and RunGeneralAccess enums ([#56](https://github.com/apify/apify-shared-python/pull/56)) ([be624ef](https://github.com/apify/apify-shared-python/commit/be624ef2b29bd393d9148012e6b4559f72242890)) by [@vdusek](https://github.com/vdusek)
+
 
 <!-- git-cliff-unreleased-end -->
 ## [2.1.0](https://github.com/apify/apify-shared-python/releases/tag/v2.1.0) (2025-09-05)
