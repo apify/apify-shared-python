@@ -352,34 +352,38 @@ class MetaOrigin(str, Enum):
 
 
 class StorageGeneralAccess(str, Enum):
-    """Access levels for Apify storage resources (key-value stores, datasets, request queues).
+    """Storage setting determining how others can access the storage.
 
-    These access levels control who can interact with storage resources and how,
-    providing fine-grained security for shared data and collaboration scenarios.
+    This setting overrides the user setting of the storage owner.
     """
 
+    FOLLOW_USER_SETTING = 'FOLLOW_USER_SETTING'
+    """Respect the user setting of the storage owner (default behavior)."""
+
     RESTRICTED = 'RESTRICTED'
-    """Access limited to the resource owner and explicitly granted users or organizations."""
+    """Only signed-in users with explicit access can read this storage."""
 
-    PUBLIC_READ = 'PUBLIC_READ'
-    """Resource data can be read by anyone, but only the owner can modify it."""
+    ANYONE_WITH_ID_CAN_READ = 'ANYONE_WITH_ID_CAN_READ'
+    """Anyone with a link or the unique storage ID can read this storage."""
 
-    PUBLIC_WRITE = 'PUBLIC_WRITE'
-    """Full public access - anyone can read, write, and modify the resource."""
+    ANYONE_WITH_NAME_CAN_READ = 'ANYONE_WITH_NAME_CAN_READ'
+    """Anyone with a link, ID, or storage name can read this storage."""
 
 
 class RunGeneralAccess(str, Enum):
-    """Access levels for Actor runs and their associated data.
+    """Run setting determining how others can access the run.
 
-    These settings control who can view Actor run details, including logs,
-    outputs, and metadata, enabling secure sharing of execution results.
+    This setting overrides the user setting of the run owner.
     """
 
-    RESTRICTED = 'RESTRICTED'
-    """Access limited to the Actor owner and explicitly authorized users."""
+    FOLLOW_USER_SETTING = 'FOLLOW_USER_SETTING'
+    """Respect the user setting of the storage owner (default behavior)."""
 
-    PUBLIC_READ = 'PUBLIC_READ'
-    """Run details and outputs are publicly visible but cannot be modified by others."""
+    RESTRICTED = 'RESTRICTED'
+    """Only signed-in users with explicit access can read this run."""
+
+    ANYONE_WITH_ID_CAN_READ = 'ANYONE_WITH_ID_CAN_READ'
+    """Anyone with a link or the unique run ID can read this run."""
 
 
 class ActorPermissionLevel(str, Enum):
