@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+<!-- git-cliff-unreleased-start -->
+## 2.2.1 - **not yet released**
+
+
+<!-- git-cliff-unreleased-end -->
 ## [2.2.0](https://github.com/apify/apify-shared-python/releases/tag/v2.2.0) (2026-01-15)
 
 ### 🚀 Features
