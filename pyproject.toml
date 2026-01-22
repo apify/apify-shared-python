@@ -44,6 +44,7 @@ dependencies = []
 [dependency-groups]
 dev = [
     "dycw-pytest-only~=2.1.0",
+    "poethepoet<1.0.0",
     "pre-commit~=4.3.0",
     "pytest-asyncio~=1.1.0",
     "pytest-cov~=6.2.0",
@@ -104,3 +105,21 @@ python-version = "3.10"
 
 [tool.ty.src]
 include = ["src", "tests", "scripts", "docs", "website"]
+
+# Run tasks with: uv run poe <task>
+[tool.poe.tasks]
+clean = "rm -rf .coverage .pytest_cache .ruff_cache .ty_cache build dist htmlcov"
+install-sync = "uv sync --all-extras"
+install-dev = "uv sync --all-extras"
+build = "uv build --verbose"
+publish-to-pypi = "uv publish --verbose --token ${APIFY_PYPI_TOKEN_CRAWLEE}"
+type-check = "uv run ty check"
+unit-tests = "uv run pytest --numprocesses=auto --verbose --cov=src/apify_shared tests/unit"
+unit-tests-cov = "uv run pytest --numprocesses=auto --verbose --cov=src/apify_shared --cov-report=html tests/unit"
+check-code = ["lint", "type-check", "unit-tests"]
+
+[tool.poe.tasks.lint]
+shell = "uv run ruff format --check && uv run ruff check"
+
+[tool.poe.tasks.format]
+shell = "uv run ruff check --fix && uv run ruff format"

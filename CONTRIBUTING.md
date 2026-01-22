@@ -8,12 +8,15 @@ For local development, it is required to have Python 3.10 (or a later version) i
 
 We use [uv](https://docs.astral.sh/uv/) for project management. Install it and set up your IDE accordingly.
 
+We use [Poe the Poet](https://poethepoet.natn.io/) as a task runner, similar to npm scripts in `package.json`.
+All tasks are defined in `pyproject.toml` under `[tool.poe.tasks]` and can be run with `uv run poe <task>`.
+
 ## Dependencies
 
 To install this package and its development dependencies, run:
 
 ```sh
-make install-dev
+uv run poe install-dev
 ```
 
 ## Code checking
@@ -21,7 +24,7 @@ make install-dev
 To execute all code checking tools together, run:
 
 ```sh
-make check-code
+uv run poe check-code
 ```
 
 ### Linting
@@ -31,7 +34,7 @@ We utilize [ruff](https://docs.astral.sh/ruff/) for linting, which analyzes code
 To run linting:
 
 ```sh
-make lint
+uv run poe lint
 ```
 
 ### Formatting
@@ -41,7 +44,7 @@ Our automated code formatting also leverages [ruff](https://docs.astral.sh/ruff/
 To run formatting:
 
 ```sh
-make format
+uv run poe format
 ```
 
 ### Type checking
@@ -51,7 +54,7 @@ Type checking is handled by [ty](https://docs.astral.sh/ty/), verifying code aga
 To run type checking:
 
 ```sh
-make type-check
+uv run poe type-check
 ```
 
 ### Unit tests
@@ -63,13 +66,13 @@ We use [pytest](https://docs.pytest.org/) as a testing framework with many plugi
 To run unit tests:
 
 ```sh
-make unit-tests
+uv run poe unit-tests
 ```
 
 To run unit tests with HTML coverage report:
 
 ```sh
-make unit-tests-cov
+uv run poe unit-tests-cov
 ```
 
 ## Release process
