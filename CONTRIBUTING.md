@@ -8,12 +8,29 @@ For local development, it is required to have Python 3.10 (or a later version) i
 
 We use [uv](https://docs.astral.sh/uv/) for project management. Install it and set up your IDE accordingly.
 
+We use [Poe the Poet](https://poethepoet.natn.io/) as a task runner, similar to npm scripts in `package.json`.
+All tasks are defined in `pyproject.toml` under `[tool.poe.tasks]` and can be run with `uv run poe <task>`.
+
+### Available tasks
+
+| Task | Description |
+| ---- | ----------- |
+| `install-dev` | Install development dependencies |
+| `check-code` | Run lint, type-check, and unit-tests |
+| `lint` | Run linter |
+| `format` | Fix lint issues and format code |
+| `type-check` | Run type checker |
+| `unit-tests` | Run unit tests |
+| `unit-tests-cov` | Run unit tests with coverage |
+| `build` | Build package |
+| `clean` | Remove build artifacts and clean caches |
+
 ## Dependencies
 
 To install this package and its development dependencies, run:
 
 ```sh
-make install-dev
+uv run poe install-dev
 ```
 
 ## Code checking
@@ -21,7 +38,7 @@ make install-dev
 To execute all code checking tools together, run:
 
 ```sh
-make check-code
+uv run poe check-code
 ```
 
 ### Linting
@@ -31,7 +48,7 @@ We utilize [ruff](https://docs.astral.sh/ruff/) for linting, which analyzes code
 To run linting:
 
 ```sh
-make lint
+uv run poe lint
 ```
 
 ### Formatting
@@ -41,7 +58,7 @@ Our automated code formatting also leverages [ruff](https://docs.astral.sh/ruff/
 To run formatting:
 
 ```sh
-make format
+uv run poe format
 ```
 
 ### Type checking
@@ -51,30 +68,28 @@ Type checking is handled by [ty](https://docs.astral.sh/ty/), verifying code aga
 To run type checking:
 
 ```sh
-make type-check
+uv run poe type-check
 ```
 
 ### Unit tests
-
-We employ pytest as our testing framework, equipped with various plugins. Check pyproject.toml for configuration details and installed plugins.
 
 We use [pytest](https://docs.pytest.org/) as a testing framework with many plugins. Check `pyproject.toml` for configuration details and installed plugins.
 
 To run unit tests:
 
 ```sh
-make unit-tests
+uv run poe unit-tests
 ```
 
 To run unit tests with HTML coverage report:
 
 ```sh
-make unit-tests-cov
+uv run poe unit-tests-cov
 ```
 
 ## Release process
 
-Publishing new versions to [PyPI](https://pypi.org/project/apify) is automated through GitHub Actions.
+Publishing new versions to [PyPI](https://pypi.org/project/apify-shared) is automated through GitHub Actions.
 
 - **Beta releases**: On each commit to the master branch, a new beta release is automatically published. The version number is determined based on the latest release and conventional commits. The beta version suffix is incremented by 1 from the last beta release on PyPI.
 - **Stable releases**: A stable version release may be created by triggering the `release` GitHub Actions workflow. The version number is determined based on the latest release and conventional commits (`auto` release type), or it may be overridden using the `custom` release type.
@@ -90,18 +105,18 @@ Publishing new versions to [PyPI](https://pypi.org/project/apify) is automated t
 
 ```toml
 [project]
-name = "apify"
+name = "apify_shared"
 version = "x.z.y"
 ```
 
-4. Generate the distribution archives for the package:
+4. Build the package:
 
-```shell
-uv build
+```sh
+uv run poe build
 ```
 
-5. Set up the PyPI API token for authentication and upload the package to PyPI:
+5. Upload to PyPI:
 
-```shell
+```sh
 uv publish --token YOUR_API_TOKEN
 ```
