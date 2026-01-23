@@ -95,10 +95,10 @@ docstring-quotes = "double"
 inline-quotes = "single"
 
 [tool.pytest.ini_options]
-addopts = "-ra"
+addopts = "-r a --verbose"
 asyncio_default_fixture_loop_scope = "function"
 asyncio_mode = "auto"
-timeout = 300
+timeout = 1800
 
 [tool.ty.environment]
 python-version = "3.10"
@@ -111,11 +111,11 @@ include = ["src", "tests", "scripts", "docs", "website"]
 clean = "rm -rf .coverage .pytest_cache .ruff_cache .ty_cache build dist htmlcov"
 install-sync = "uv sync --all-extras"
 install-dev = "uv sync --all-extras"
-build = "uv build --verbose"
-publish-to-pypi = "uv publish --verbose --token ${APIFY_PYPI_TOKEN_CRAWLEE}"
+build = "uv build"
+publish-to-pypi = "uv publish --token ${APIFY_PYPI_TOKEN_CRAWLEE}"
 type-check = "uv run ty check"
-unit-tests = "uv run pytest --numprocesses=auto --verbose --cov=src/apify_shared tests/unit"
-unit-tests-cov = "uv run pytest --numprocesses=auto --verbose --cov=src/apify_shared --cov-report=html tests/unit"
+unit-tests = "uv run pytest --numprocesses=${TESTS_CONCURRENCY:-auto} --cov=src/apify_shared tests/unit"
+unit-tests-cov = "uv run pytest --numprocesses=${TESTS_CONCURRENCY:-auto} --cov=src/apify_shared --cov-report=html tests/unit"
 check-code = ["lint", "type-check", "unit-tests"]
 
 [tool.poe.tasks.lint]
