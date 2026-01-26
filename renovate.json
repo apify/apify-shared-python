@@ -1,0 +1,25 @@
+{
+    "extends": ["config:base", ":semanticCommitTypeAll(chore)"],
+    "ignorePaths": ["docs/**"],
+    "pinVersions": false,
+    "separateMajorMinor": false,
+    "dependencyDashboard": false,
+    "semanticCommits": "enabled",
+    "lockFileMaintenance": {
+        "enabled": true,
+        "automerge": true,
+        "automergeType": "branch"
+    },
+    "packageRules": [
+        {
+            "matchPaths": ["pyproject.toml"],
+            "matchDepTypes": ["devDependencies"],
+            "matchUpdateTypes": ["major", "minor"],
+            "groupName": "major/minor dev dependencies",
+            "groupSlug": "dev-dependencies",
+            "automerge": true,
+            "automergeType": "branch"
+        }
+    ],
+    "schedule": ["before 7am every weekday"]
+}
