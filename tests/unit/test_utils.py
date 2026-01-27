@@ -58,6 +58,6 @@ def test_create_storage_content_signature_with_expiration() -> None:
         expires_in_millis=10000,
     )
 
-    version, expires_at, hmac = base64.urlsafe_b64decode(signature).decode('utf-8').split('.')
+    version, expires_at, _ = base64.urlsafe_b64decode(signature).decode('utf-8').split('.')
     assert version == '0'
     assert expires_at != '0'
