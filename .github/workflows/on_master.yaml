@@ -22,9 +22,8 @@ jobs:
     name: Tests
     uses: ./.github/workflows/_tests.yaml
 
-  # The beta release jobs are intentionally inlined here (instead of calling
-  # `manual_release_beta.yaml` via `uses:`) because PyPI's Trusted Publishing
-  # does not currently support reusable workflows.
+  # The beta release jobs are intentionally inlined here (instead of calling `manual_release_beta.yaml` via `uses:`)
+  # because PyPI's Trusted Publishing does not currently support reusable workflows.
   # See: https://docs.pypi.org/trusted-publishers/troubleshooting/#reusable-workflows-on-github
   release_prepare:
     # Skip this for "ci", "docs" and "test" commits and for forks.
