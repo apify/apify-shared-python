@@ -56,6 +56,16 @@ dev = [
     "ty~=0.0.0",
 ]
 
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "src/apify_shared",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "README.md",
+    "pyproject.toml",
+]
+
 [tool.ruff]
 line-length = 120
 include = ["src/**/*.py", "tests/**/*.py"]
