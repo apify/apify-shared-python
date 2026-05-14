@@ -102,6 +102,8 @@ jobs:
           src_package_dir: src/apify_shared
           dist_dir: dist
           python_version: "3.14"
+          smoke_code: |
+            from apify_shared.consts import WebhookEventType
 
       # Publishes the package to PyPI using PyPA official GitHub action with OIDC authentication.
       - name: Publish package to PyPI
