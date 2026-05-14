@@ -23,6 +23,8 @@ jobs:
     with:
       package_name: apify_shared
       src_package_dir: src/apify_shared
+      dist_dir: dist
+      python_version: "3.14"
 
   tests:
     name: Tests
