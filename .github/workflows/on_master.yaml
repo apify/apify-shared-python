@@ -8,15 +8,16 @@ on:
       - "**" # Ignore all tags to avoid duplicate executions triggered by tag pushes.
 
 jobs:
-  code_checks:
-    name: Code checks
-    uses: ./.github/workflows/_check_code.yaml
-
-  tests:
-    # Skip this for "ci" and "docs" commits.
-    if: "!startsWith(github.event.head_commit.message, 'ci') && !startsWith(github.event.head_commit.message, 'docs')"
-    name: Tests
-    uses: ./.github/workflows/_tests.yaml
+  checks:
+    name: Checks
+    uses: ./.github/workflows/_checks.yaml
+    with:
+      # Skip the test suite for "ci" and "docs" commits — they don't change runtime behavior.
+      run_tests: >-
+        ${{
+          !startsWith(github.event.head_commit.message, 'ci') &&
+          !startsWith(github.event.head_commit.message, 'docs')
+        }}
 
   # The beta release is dispatched as a separate workflow run (instead of calling `manual_release_beta.yaml` via `uses:`)
   # because PyPI's Trusted Publishing does not currently support reusable workflows.
@@ -25,7 +26,7 @@ jobs:
     # Skip this for "ci", "docs" and "test" commits and for forks.
     if: "!startsWith(github.event.head_commit.message, 'ci') && !startsWith(github.event.head_commit.message, 'docs') && !startsWith(github.event.head_commit.message, 'test') && startsWith(github.repository, 'apify/')"
     name: Beta release
-    needs: [code_checks, tests]
+    needs: [checks]
     runs-on: ubuntu-latest
     permissions:
       actions: write # Required by execute-workflow.
