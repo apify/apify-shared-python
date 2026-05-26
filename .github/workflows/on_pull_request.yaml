@@ -13,14 +13,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  code_checks:
-    name: Code checks
-    uses: ./.github/workflows/_check_code.yaml
-
-  package_check:
-    name: Package check
-    uses: ./.github/workflows/_check_package.yaml
-
-  tests:
-    name: Tests
-    uses: ./.github/workflows/_tests.yaml
+  checks:
+    name: Checks
+    uses: ./.github/workflows/_checks.yaml
