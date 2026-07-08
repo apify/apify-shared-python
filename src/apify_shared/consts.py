@@ -350,6 +350,12 @@ class MetaOrigin(str, Enum):
     CLI = 'CLI'
     """Actor run started using the Apify command-line interface."""
 
+    CI = 'CI'
+    """Actor run started from a CI/CD pipeline (e.g. GitHub Actions)."""
+
+    MCP = 'MCP'
+    """Actor run started through the Apify client triggered from the Apify MCP server."""
+
 
 class StorageGeneralAccess(str, Enum):
     """Storage setting determining how others can access the storage.
