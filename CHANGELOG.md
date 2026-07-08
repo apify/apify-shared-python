@@ -2,15 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-<!-- git-cliff-unreleased-start -->
-## 2.2.1 - **not yet released**
+## [2.2.1](https://github.com/apify/apify-shared-python/releases/tag/v2.2.1) (2026-07-08)
 
 ### 🐛 Bug Fixes
 
 - Add CI and MCP to MetaOrigin enum ([#73](https://github.com/apify/apify-shared-python/pull/73)) ([8b9625d](https://github.com/apify/apify-shared-python/commit/8b9625d579cea78d06282206f3d7eaf7606c01df)) by [@vdusek](https://github.com/vdusek)
 
 
-<!-- git-cliff-unreleased-end -->
 ## [2.2.0](https://github.com/apify/apify-shared-python/releases/tag/v2.2.0) (2026-01-15)
 
 ### 🚀 Features
