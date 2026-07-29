@@ -68,8 +68,7 @@ only-include = [
 [tool.ruff]
 line-length = 120
 include = [
-    "src/**/*.py",
-    "tests/**/*.py",
+    "**/*.py",
     # Ruff formats Python code blocks embedded in Markdown files.
     "**/*.md",
     "**/*.mdx",
