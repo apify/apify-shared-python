@@ -5,14 +5,14 @@ build-backend = "uv_build"
 [project]
 name = "apify_shared"
 version = "2.2.2"
-description = "Tools and constants shared across Apify projects."
+description = "DEPRECATED - Tools and constants shared across Apify projects."
 authors = [{ name = "Apify Technologies s.r.o.", email = "support@apify.com" }]
 license = "Apache-2.0"
 license-files = ["LICENSE"]
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 7 - Inactive",
     "Environment :: Console",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",

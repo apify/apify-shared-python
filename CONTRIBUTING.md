@@ -1,5 +1,8 @@
 # Development
 
+> ⚠️ This package is deprecated and archived - see the [README](README.md). New features and dependency updates are
+> not accepted anymore; the guide below is kept only in case the project is revived.
+
 Here you'll find a contributing guide to get started with development.
 
 ## Environment
