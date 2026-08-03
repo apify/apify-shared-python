@@ -13,11 +13,7 @@ apify-fingerprint-datapoints = false
 
 [[package]]
 name = "apify-shared"
-<<<<<<< Updated upstream
 version = "2.3.0"
-=======
-version = "2.3.1"
->>>>>>> Stashed changes
 source = { editable = "." }
 
 [package.dev-dependencies]
