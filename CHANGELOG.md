@@ -2,11 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-<!-- git-cliff-unreleased-start -->
-## 2.2.2 - **not yet released**
+## [2.3.0](https://github.com/apify/apify-shared-python/releases/tag/v2.3.0) (2026-08-03)
+
+### 🚀 Features
+
+- Deprecate the apify-shared package ([#79](https://github.com/apify/apify-shared-python/pull/79)) ([b1de9ba](https://github.com/apify/apify-shared-python/commit/b1de9ba7c305d59e987f2b07d58007160a7b7866)) by [@vdusek](https://github.com/vdusek)
 
 
-<!-- git-cliff-unreleased-end -->
 ## [2.2.1](https://github.com/apify/apify-shared-python/releases/tag/v2.2.1) (2026-07-08)
 
 ### 🐛 Bug Fixes
